@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Weapon : Item
 {
+    public AnimatorOverrideController weaponOverride;
+    public AnimatorOverrideController movementOverride;
+
     public int value;
     public bool canDouble;
     public bool isRight;

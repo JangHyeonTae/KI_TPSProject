@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     private Animator animator;
     private PlayerStatus status;
     private PlayerMovement movement;
+    [SerializeField] AnimatorOverrideController weaponOverride;
 
     public Transform rightWeaponSpawn;
     public Transform leftWeaponSpawn;
@@ -15,9 +16,8 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private GameObject instWeapon;
 
-    private readonly int SHORT_HASH = Animator.StringToHash("ShortSword");
-    private readonly int LONG_HASH = Animator.StringToHash("LongSword");
-    private readonly int SHIELD_HASH = Animator.StringToHash("Shield");
+    [SerializeField] private float Attackdelay = 1f;
+    private float delay = 0;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -27,8 +27,9 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Start()
     {
-        if(weapon.isRight)
-            instWeapon = Instantiate(weapon.model, rightWeaponSpawn);
+        if (weapon.isRight)
+            SpawnWeapon();
+
         //else if(!weapon.isRight && weapon.canDouble)
         //    instWeapon = Instantiate(weapon.model, leftWeaponSpawn);
     }
@@ -45,27 +46,16 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Update()
     {
+        delay += Time.deltaTime;
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (weapon.name == "ShorSword")
+            if (delay > Attackdelay)
             {
-                animator.Play(SHORT_HASH);
+                animator.SetTrigger("Attack");
+                delay = 0;
             }
-            else if (weapon.name == "LongSword")
-            {
-                animator.Play(LONG_HASH);
-            }
-            else
-            {
-                return;
-            }
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (weapon.name == "ShorSword")
-                animator.Play(SHIELD_HASH);
-            else
-                return;
+            
         }
     }
 
@@ -73,10 +63,16 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         HandlePlayerController();
     }
+    
+    public void SpawnWeapon()
+    {
+        instWeapon = Instantiate(weapon.model, rightWeaponSpawn);
+        animator.runtimeAnimatorController = weaponOverride;
+    }
 
     public void Attack()
     {
-        animator.Play(SHORT_HASH);
+        
     }
     public void TakeDmage()
     {

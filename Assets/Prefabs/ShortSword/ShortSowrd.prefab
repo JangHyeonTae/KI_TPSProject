@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1436312087502347418}
   - component: {fileID: 4859523040556116267}
   m_Layer: 0
-  m_Name: 1HSword
+  m_Name: ShortSowrd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

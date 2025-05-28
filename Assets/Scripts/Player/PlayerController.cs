@@ -8,47 +8,30 @@ public class PlayerController : MonoBehaviour, IDamagable
     private Animator animator;
     private PlayerStatus status;
     private PlayerMovement movement;
-    [SerializeField] AnimatorOverrideController weaponOverride = null;
+    private PlayerFight playerFight;
+    //public Weapon weapon;
 
-    public Transform rightWeaponSpawn;
-    public Transform leftWeaponSpawn;
-    public Weapon weapon;
-
-    private GameObject instWeapon;
-
-    private float delay = 0;
-    private bool attacking;
+    public float attackDelay = 1.6f;
+    public float delay = 0;
+    public bool attacking;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         status = GetComponent<PlayerStatus>();
         movement = GetComponent<PlayerMovement>();
+        playerFight = GetComponent<PlayerFight>();
     }
 
     private void Start()
     {
-        if (weapon.isRight)
-            SpawnWeapon();
-
         //else if(!weapon.isRight && weapon.canDouble)
         //    instWeapon = Instantiate(weapon.model, leftWeaponSpawn);
     }
-
-    private void OnEnable()
-    {
-        Subscribe();
-    }
-
-    private void OnDisable()
-    {
-        UnSubscribe();
-    }
-
-    private void Update()
+    void Update()
     {
         delay += Time.deltaTime;
 
-        if (delay > weapon.attackDelay)
+        if (delay > attackDelay)
             attacking = true;
         else
             attacking = false;
@@ -59,22 +42,32 @@ public class PlayerController : MonoBehaviour, IDamagable
             delay = 0;
         }
     }
+    private void OnEnable()
+    {
+        Subscribe();
+    }
+
+    private void OnDisable()
+    {
+        UnSubscribe();
+    }
 
     private void FixedUpdate()
     {
         HandlePlayerController();
     }
     
-    public void SpawnWeapon()
-    {
-        instWeapon = Instantiate(weapon.model, rightWeaponSpawn);
-        animator.runtimeAnimatorController = weaponOverride;
-    }
-
+    //TODO : 애니메이션 이벤트로 플레이어 방어, 공격
     public void Attack()
     {
         
     }
+
+    public void Defence()
+    {
+
+    }
+
     public void TakeDmage()
     {
 

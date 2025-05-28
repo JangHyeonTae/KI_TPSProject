@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Weapon : Item
 {
-    public AnimatorOverrideController weaponOverride;
+    [SerializeField] AnimatorOverrideController weaponOverride = null;
     //public AnimatorOverrideController movementOverride;
 
     public int value;
     public bool canDouble;
     public bool isRight;
     public float attackDelay;
+
+    public void Spawn(Transform handTransform, Animator animator)
+    {
+        Instantiate(model, handTransform);
+        animator.runtimeAnimatorController = weaponOverride;
+    }
+
 
 }

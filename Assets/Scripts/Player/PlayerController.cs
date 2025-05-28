@@ -26,11 +26,23 @@ public class PlayerController : MonoBehaviour, IDamagable
         UnSubscribe();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
+    }
+
     private void FixedUpdate()
     {
         HandlePlayerController();
     }
 
+    public void Attack()
+    {
+        animator.SetTrigger("ShortAttack");
+    }
     public void TakeDmage()
     {
 
@@ -79,7 +91,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
         Vector3 input = movement.InputDir();
         animator.SetFloat("X", input.x * moveSpeed);
-        animator.SetFloat("Z", input.z * moveSpeed);
+        animator.SetFloat("Y", input.z * moveSpeed);
     }
 
     private void Subscribe()

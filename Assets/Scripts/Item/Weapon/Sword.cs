@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "Item/Potion", order = 0)]
-public class Potion : Item
+[CreateAssetMenu(fileName = "Item", menuName = "Item/Weapon", order = 1)]
+public class Sword : Item
 {
-    public int value;
-
 
     public override void Use(PlayerController player)
     {

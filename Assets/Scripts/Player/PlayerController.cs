@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamagable
 {
     public bool isCanMove { get; set; } = true;
     private Animator animator;
@@ -16,10 +16,26 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
     }
 
+    private void OnEnable()
+    {
+        Subscribe();
+    }
+
+    private void OnDisable()
+    {
+        UnSubscribe();
+    }
+
     private void FixedUpdate()
     {
         HandlePlayerController();
     }
+
+    public void TakeDmage()
+    {
+
+    }
+
     private void HandlePlayerController()
     {
         if (!isCanMove) return;
@@ -50,6 +66,14 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 moveDir = movement.HandlerPlayerMove(moveSpeed);
+        if (moveDir != Vector3.zero)
+        {
+            status.IsMove = true;
+        }
+        else
+        {
+            status.IsMove = false;
+        }
         Vector3 avatorRot = moveDir;
         movement.SetAvatarRotation(avatorRot);
 
@@ -57,4 +81,16 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("X", input.x * moveSpeed);
         animator.SetFloat("Z", input.z * moveSpeed);
     }
+
+    private void Subscribe()
+    {
+        status.OnMove += SetMoveAnim;
+    }
+
+    private void UnSubscribe()
+    {
+        status.OnMove -= SetMoveAnim;
+    }
+
+    private void SetMoveAnim(bool value) => animator.SetBool("IsMove",value);
 }

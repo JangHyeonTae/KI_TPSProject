@@ -9,10 +9,11 @@ public abstract class Item : ScriptableObject
     public int size;
     public Image icon; 
     [TextArea]public string description;
-    public GameObject prefab;
+    public GameObject model;
+    public GameObject dropModel;
 
     public bool isAdd;
     
     
-    public virtual void Use() { }
+    public virtual void Use(PlayerController player) { }
 }

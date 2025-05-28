@@ -4,5 +4,26 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public List<Item> items = new List<Item>();
+    private static InventoryManager invenInstance;
+    public static InventoryManager InvenInstance { get  { return invenInstance; } }
+
+    public List<Item> itemList = new List<Item>();
+    private void Awake()
+    {
+        if (invenInstance == null)
+        {
+            invenInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddItem(Item item)
+    {
+
+    }
+
 }

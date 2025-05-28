@@ -9,11 +9,28 @@ public class PlayerController : MonoBehaviour, IDamagable
     private PlayerStatus status;
     private PlayerMovement movement;
 
+    public Transform rightWeaponSpawn;
+    public Transform leftWeaponSpawn;
+    public Weapon weapon;
+
+    private GameObject instWeapon;
+
+    private readonly int SHORT_HASH = Animator.StringToHash("ShortSword");
+    private readonly int LONG_HASH = Animator.StringToHash("LongSword");
+    private readonly int SHIELD_HASH = Animator.StringToHash("Shield");
     private void Awake()
     {
         animator = GetComponent<Animator>();
         status = GetComponent<PlayerStatus>();
         movement = GetComponent<PlayerMovement>();
+    }
+
+    private void Start()
+    {
+        if(weapon.isRight)
+            instWeapon = Instantiate(weapon.model, rightWeaponSpawn);
+        //else if(!weapon.isRight && weapon.canDouble)
+        //    instWeapon = Instantiate(weapon.model, leftWeaponSpawn);
     }
 
     private void OnEnable()
@@ -30,7 +47,25 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            if (weapon.name == "ShorSword")
+            {
+                animator.Play(SHORT_HASH);
+            }
+            else if (weapon.name == "LongSword")
+            {
+                animator.Play(LONG_HASH);
+            }
+            else
+            {
+                return;
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (weapon.name == "ShorSword")
+                animator.Play(SHIELD_HASH);
+            else
+                return;
         }
     }
 
@@ -41,7 +76,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void Attack()
     {
-        animator.SetTrigger("ShortAttack");
+        animator.Play(SHORT_HASH);
     }
     public void TakeDmage()
     {

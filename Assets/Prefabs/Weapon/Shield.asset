@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474f78fb38602034cbf9c0b724d5842e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  name: "\uBC29\uD328"
+  name: Shield
   size: 10
   icon: {fileID: 0}
   description: "\uD0C0\uC774\uBC0D\uC774 \uC798 \uB9DE\uC73C\uBA74 \uACF5\uACA9\uC744
     \uB9C9\uC744 \uC218 \uC788\uB2E4"
-  model: {fileID: 6178910010185645882, guid: 49cc47dc513fcae4688be36f118e738e, type: 3}
+  model: {fileID: 6724441382386197070, guid: 8ab157fb5b364024d94f9d05a75ae044, type: 3}
   dropModel: {fileID: 6178910010185645882, guid: 2f9e88e85dcb3e24397d6f060996771a,
     type: 3}
   isAdd: 0
+  value: 10
+  canDouble: 0
+  isRight: 0

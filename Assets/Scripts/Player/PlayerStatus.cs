@@ -38,4 +38,5 @@ public class PlayerStatus : MonoBehaviour
     private bool isTakeDamage;
     public bool IsTakeDamage { get { return isTakeDamage; } set { isTakeDamage = value; OnTakeDamage?.Invoke(isTakeDamage); } }
     public event Action<bool> OnTakeDamage;
+
 }

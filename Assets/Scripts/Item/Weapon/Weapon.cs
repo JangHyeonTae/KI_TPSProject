@@ -6,6 +6,7 @@ public class Weapon : Item
 {
     public int value;
     public bool canDouble;
+    public bool isRight;
 
 
 }

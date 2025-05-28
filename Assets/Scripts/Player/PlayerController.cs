@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamagable
 {
-    public bool isCanMove { get; set; } = true;
+    public bool isCanMove { get => attacking; }
     private Animator animator;
     private PlayerStatus status;
     private PlayerMovement movement;
-    [SerializeField] AnimatorOverrideController weaponOverride;
+    [SerializeField] AnimatorOverrideController weaponOverride = null;
 
     public Transform rightWeaponSpawn;
     public Transform leftWeaponSpawn;
@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private GameObject instWeapon;
 
-    [SerializeField] private float Attackdelay = 1f;
     private float delay = 0;
+    private bool attacking;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -48,14 +48,15 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         delay += Time.deltaTime;
 
+        if (delay > weapon.attackDelay)
+            attacking = true;
+        else
+            attacking = false;
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (delay > Attackdelay)
-            {
-                animator.SetTrigger("Attack");
-                delay = 0;
-            }
-            
+            animator.SetTrigger("NormalAttack");
+            delay = 0;
         }
     }
 

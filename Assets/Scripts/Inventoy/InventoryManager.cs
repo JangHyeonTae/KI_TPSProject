@@ -8,6 +8,8 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager InvenInstance { get  { return invenInstance; } }
 
     public List<Item> itemList = new List<Item>();
+
+    public GameObject InventoryCanvas;
     private void Awake()
     {
         if (invenInstance == null)
@@ -23,7 +25,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item)
     {
-
+        itemList.Add(item);
     }
 
 }

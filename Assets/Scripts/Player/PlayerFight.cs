@@ -19,6 +19,7 @@ public class PlayerFight : MonoBehaviour
         SpawnWeapon(weapon);
     }
 
+    //호출시 해당 무기 장착
     public void SpawnWeapon(Weapon _weapon)
     {
         Transform handTransform;

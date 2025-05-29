@@ -7,7 +7,7 @@ public class DropItem : MonoBehaviour
 {
     [SerializeField] Item item;
 
-    private GameObject prefab;
+    public GameObject prefab;
     [SerializeField] private float peekRange;
     [SerializeField] private LayerMask playerLayer;
 
@@ -31,35 +31,50 @@ public class DropItem : MonoBehaviour
         Destroy(prefab);
     }
 
-    private void Update()
-    {
-        Range();
-    }
 
-
-    private void Range()
+    private void OnTriggerStay(Collider other)
     {
-        if(Physics.OverlapSphere(transform.position, peekRange, playerLayer).Length > 0)
+        if (other.gameObject.layer == 7)
         {
             if (!hasShow)
             {
                 Manager.InvenInstance.AddSideItem(item);
-                Debug.Log("11");
+                Debug.Log("Add Side Item");
                 hasShow = true;
             }
         }
-        else
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 7)
         {
-             Manager.InvenInstance.RemoveSideItem();
-            hasShow = false;
+            if (hasShow)
+            {
+                Manager.InvenInstance.RemoveSideItem();
+                hasShow = false;
+            }
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, peekRange);
-    }
+
+    //private void Range()
+    //{
+    //    if(Physics.OverlapSphere(transform.position, peekRange, playerLayer).Length > 0)
+    //    {
+    //        
+    //    }
+    //    else
+    //    {
+    //        
+    //    }
+    //}
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, peekRange);
+    //}
 
     private Weapon DropWeapon()
     {

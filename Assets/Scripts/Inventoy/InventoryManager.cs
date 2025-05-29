@@ -11,8 +11,8 @@ public class InventoryManager : MonoBehaviour
 
     public UnityEvent OnInventoryOpen;
 
-    public List<Item> itemList = new List<Item>(12);
-    public List<Item> sideItemList = new List<Item>(4);
+    public List<Item> itemList = new List<Item>();
+    public List<Item> sideItemList = new List<Item>();
 
     [SerializeField] private GameObject InventoryCanvas;
     [SerializeField] private int inventoryBagSize;
@@ -48,7 +48,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        if (itemList.Count < 12 && inventoryBagCurSize <= inventoryBagSize)
+        if (itemList.Count < 12)// && inventoryBagCurSize <= inventoryBagSize)
         {
            itemList.Add(item);
         }
@@ -70,15 +70,11 @@ public class InventoryManager : MonoBehaviour
         sideItemList.Clear();
     }
 
-    public void ShowSideItem(Item item)
-    {
-
-    }
-
-    //public void SetGuage()
+    //public void AddShowItem(Item item)
     //{
-    //    GetComponent<UIGuage>().GetUIGuage()
+    //    slotParent.
     //}
+
 
     private void PopUpInventroy()
     {

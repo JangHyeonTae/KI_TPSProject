@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: LongSword
   size: 20
+  imageSprite: {fileID: 21300000, guid: bbe0741245aed4477afa4e7c45d17d1f, type: 3}
   icon: {fileID: 0}
   description: "\uB9E4\uC6B0 \uAE34 \uAC80\uC73C\uB85C \uACF5\uACA9 \uC18D\uB3C4\uAC00
     \uB290\uB9AC\uC9C0\uB9CC \uD50C\uB808\uC774\uC5B4\uC758 \uACF5\uACA9\uB825\uC774
@@ -25,6 +26,7 @@ MonoBehaviour:
   isAdd: 0
   weaponOverride: {fileID: 22100000, guid: 15d6d18f53a29d14d841dc0d3985c832, type: 2}
   value: 20
+  range: 0
   canDouble: 0
   isRight: 1
   attackDelay: 0

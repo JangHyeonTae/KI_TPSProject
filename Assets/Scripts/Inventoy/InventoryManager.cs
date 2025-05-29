@@ -15,6 +15,9 @@ public class InventoryManager : MonoBehaviour
     public List<Item> sideItemList = new List<Item>();
 
     [SerializeField] private GameObject InventoryCanvas;
+    public GameObject MyInventoryPanel;
+    public UnityEvent<bool> OnDraging;
+
     [SerializeField] private int inventoryBagSize;
     [SerializeField] private int inventoryBagCurSize = 0;
 
@@ -38,12 +41,13 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         OnInventoryOpen.AddListener(PopUpInventroy);
-        //OnChangeSize.AddListener();
+        //OnDraging.AddListener(DrapOpen);
     }
 
     private void OnDisable()
     {
         OnInventoryOpen.RemoveListener(PopUpInventroy);
+        //OnDraging.RemoveListener(DrapOpen);
     }
 
     public void AddItem(Item item)
@@ -89,5 +93,7 @@ public class InventoryManager : MonoBehaviour
             canMove = false;
         }
     }
+
+    //private void DrapOpen(bool value) => MyInventoryPanel.SetActive(value);
 
 }

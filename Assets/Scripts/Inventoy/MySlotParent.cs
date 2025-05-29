@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public interface IDamagable
+public class MySlotParent : MonoBehaviour
 {
-     
-    public void TakeDamage(float amount) { }
+    
 }

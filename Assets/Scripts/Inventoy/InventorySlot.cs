@@ -10,8 +10,8 @@ public class InventorySlot : MonoBehaviour
     , IPointerExitHandler  // 하이라이트 마칠때
     , IBeginDragHandler
     , IDragHandler         // IDragHandler 시작
-    , IEndDragHandler
-    , IDropHandler         // Drag부분이 inventoryCanvasSlot가 아니면 제자리,
+    , IEndDragHandler     
+    // Drag부분이 inventoryCanvasSlot가 아니면 제자리,
 // inventoryCanvasSlot일경우 해당 inventoryCanvas 슬롯
 {
     public Image slotImage;
@@ -20,7 +20,8 @@ public class InventorySlot : MonoBehaviour
     private SlotParent slotParent;
     private int myIndex;
 
-    private Transform prevTransform;
+    private Vector3 starPos;
+    private Vector3 dragPos;
     public void Init(int index, SlotParent parent)
     {
         myIndex = index;
@@ -29,10 +30,7 @@ public class InventorySlot : MonoBehaviour
 
     private void Update()
     {
-        if (slotParent.name == "SideInventroyContents")
-        {
-            SetSlot();
-        }
+        SetSlot();
     }
 
     private void SetSlot()
@@ -58,13 +56,6 @@ public class InventorySlot : MonoBehaviour
     //}
 
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        
-    }
-
-
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         slotImage.color = Color.yellow;
@@ -75,21 +66,39 @@ public class InventorySlot : MonoBehaviour
         slotImage.color = Color.white;
     }
 
+
+
+
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        starPos = transform.position;
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
-        prevTransform.position = transform.position;
-        transform.position = eventData.position;
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Manager.InvenInstance.MyInventoryPanel.SetActive(true);
+            transform.position += (Vector3)eventData.delta;
+            dragPos = transform.position;
+            Debug.Log($"{dragPos.x}, {dragPos.y}, {dragPos.z}");
+        }
     }
-
+    //Manager.InvenInstance.itemList일경우 Manager.InvenInstance.itemList.AddItem(item)으로 옮김
+    //slotParent의 
+    //if()
     public void OnEndDrag(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        Manager.InvenInstance.MyInventoryPanel.SetActive(false);
+        if (dragPos.x > 205 && dragPos.x < 441 && dragPos.y > 13 && dragPos.y < 245)
+        {
+            Debug.Log("CanMove");
+        }
+        else
+        {
+            transform.position = starPos;
+        }
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        //Manager.InvenInstance.itemList일경우 Manager.InvenInstance.itemList.AddItem(item)으로 옮김
-        //slotParent의 
-        //if()
-    }
 }

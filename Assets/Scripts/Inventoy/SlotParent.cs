@@ -24,6 +24,13 @@ public class SlotParent : MonoBehaviour
         }
     }
 
+    public Item GetSideItemAt(int index)
+    {
+        if (index < 0 || index >= Manager.InvenInstance.sideItemList.Count)
+            return null;
+
+        return Manager.InvenInstance.sideItemList[index];
+    }
 
     //public Item ShowSideInventory()
     //{
@@ -36,12 +43,6 @@ public class SlotParent : MonoBehaviour
     //    }
     //    return slot
     //}
-    public Item GetSideItemAt(int index)
-    {
-        if (index < 0 || index >= Manager.InvenInstance.sideItemList.Count)
-            return null;
 
-        return Manager.InvenInstance.sideItemList[index];
-    }
 
 }

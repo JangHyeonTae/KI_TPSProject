@@ -17,10 +17,6 @@ public class DropItem : MonoBehaviour
         prefab = GetComponent<GameObject>();
     }
 
-    private void Start()
-    {
-        
-    }
     private void OnEnable()
     {
         prefab = Instantiate(item.dropModel, transform);
@@ -44,7 +40,6 @@ public class DropItem : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == 7)
@@ -56,7 +51,10 @@ public class DropItem : MonoBehaviour
             }
         }
     }
-
+    private Weapon DropWeapon()
+    {
+        return item as Weapon;
+    }
 
     //private void Range()
     //{
@@ -75,9 +73,4 @@ public class DropItem : MonoBehaviour
     //    Gizmos.color = Color.red;
     //    Gizmos.DrawWireSphere(transform.position, peekRange);
     //}
-
-    private Weapon DropWeapon()
-    {
-        return item as Weapon;
-    }
 }

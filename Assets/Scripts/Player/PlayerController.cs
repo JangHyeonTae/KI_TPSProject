@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamagable
-{
-    public bool isCanMove { get => IsAttackAnim(); }
+{ 
+    public bool isCanMove = true;
+
     private Animator animator;
     private PlayerStatus status;
     private PlayerMovement movement;
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public float attackDelay = 1.6f;
     public float delay = 0;
-    public bool attacking;
+    private bool attacking;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -31,10 +32,18 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         delay += Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            animator.SetTrigger("NormalAttack");
-            delay = 0;
+            if (Manager.InvenInstance.canMove)
+            {
+                isCanMove = false;
+            }
+            else
+            {
+                isCanMove = true;
+            }
+            Manager.InvenInstance.OnInventoryOpen?.Invoke();
         }
     }
     private void OnEnable()
@@ -73,6 +82,12 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         if (!isCanMove) return;
         HandleDir();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("NormalAttack");
+            delay = 0;
+        }
     }
 
     private void HandleDir()

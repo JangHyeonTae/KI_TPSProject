@@ -7,6 +7,7 @@ public abstract class Item : ScriptableObject
 {
     public string name;
     public int size;
+    public Sprite imageSprite;
     public Image icon; 
     [TextArea]public string description;
     public GameObject model;
@@ -14,6 +15,10 @@ public abstract class Item : ScriptableObject
 
     public bool isAdd;
     
+    private void Start()
+    {
+        icon.sprite = imageSprite;
+    }
     
     public virtual void Use(PlayerController player) { }
 }

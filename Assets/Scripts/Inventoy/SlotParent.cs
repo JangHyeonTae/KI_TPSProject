@@ -6,40 +6,30 @@ using UnityEngine.UI;
 
 public class SlotParent : MonoBehaviour
 {
-    [SerializeField] private int slotSize = 12;
-    List<InventorySlot> slots;
-    [SerializeField] Image slot; 
+    [SerializeField] private int slotSize;
+    List<InventorySlot> slotList;
+    [SerializeField] InventorySlot slot; 
 
 
     void Start()
     {
-        slots = new List<InventorySlot>();
+        slotList = new List<InventorySlot>();
 
         for (int i = 0; i < slotSize; i++)
         {
-            Instantiate(slot,gameObject.transform);
+            InventorySlot inst = Instantiate(slot,gameObject.transform);
+            slotList.Add(inst);
         }
     }
 
-    void Update()
+    public Item ShowSideInventory()
     {
-        ShowSideInventory();
-    }
-
-    private void ShowSideInventory()
-    {
-        Item[] item = new Item[slotSize];
         for (int i = 0; i < Manager.InvenInstance.sideItemList.Count; i++)
         {
-            item[i] = Manager.InvenInstance.sideItemList[i];
-            if (item[i] != null)
-            {
-                slots[i].slotImage = item[i].icon;
-            }
-            else
-            {
-                continue;
-            }
+            if (slotList[i] == null) return null;
+    
+            return slotList[i].itemData = Manager.InvenInstance.sideItemList[i];
         }
+        return null;
     }
 }

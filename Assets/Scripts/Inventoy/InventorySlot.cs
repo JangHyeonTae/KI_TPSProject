@@ -15,12 +15,30 @@ public class InventorySlot : MonoBehaviour
 // inventoryCanvasSlot일경우 해당 inventoryCanvas 슬롯
 {
     public Image slotImage;
-    
+    public Item itemData;
+
+    private SlotParent slotParent;
+
+    private void Awake()
+    {
+        slotParent = GetComponentInParent<SlotParent>();
+    }
+
+    private void Update()
+    {
+        SetSlot();
+    }
+    private void SetSlot()
+    {
+        itemData = slotParent.ShowSideInventory();
+        if (itemData == null) return;
+        slotImage.sprite = itemData.imageSprite;
+    }
 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        
     }
 
 

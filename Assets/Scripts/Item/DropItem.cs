@@ -11,11 +11,16 @@ public class DropItem : MonoBehaviour
     [SerializeField] private float peekRange;
     [SerializeField] private LayerMask playerLayer;
 
+    private bool hasShow = false;
     private void Awake()
     {
         prefab = GetComponent<GameObject>();
     }
 
+    private void Start()
+    {
+        
+    }
     private void OnEnable()
     {
         prefab = Instantiate(item.dropModel, transform);
@@ -31,31 +36,22 @@ public class DropItem : MonoBehaviour
         Range();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            //other.GetComponent<PlayerFight>().SpawnWeapon(DropWeapon());
-            //Manager.InvenInstance.AddItem(item);
-            //Destroy(gameObject);
-            
-        }
-        else
-        {
-            
-        }
-    }
 
     private void Range()
     {
-        if (Physics.OverlapSphere(transform.position, peekRange, playerLayer).Length > 0)
+        if(Physics.OverlapSphere(transform.position, peekRange, playerLayer).Length > 0)
         {
-            if (Manager.InvenInstance.sideItemList.Contains(item)) return;
-            Manager.InvenInstance.AddSideItem(item);
+            if (!hasShow)
+            {
+                Manager.InvenInstance.AddSideItem(item);
+                Debug.Log("11");
+                hasShow = true;
+            }
         }
         else
         {
-            Manager.InvenInstance.RemoveSideItem();
+             Manager.InvenInstance.RemoveSideItem();
+            hasShow = false;
         }
     }
 

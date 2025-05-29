@@ -12,11 +12,11 @@ public class InventoryManager : MonoBehaviour
     public UnityEvent OnInventoryOpen;
 
     public List<Item> itemList = new List<Item>(12);
-    public List<Item> sideItemList = new List<Item>();
+    public List<Item> sideItemList = new List<Item>(4);
 
     [SerializeField] private GameObject InventoryCanvas;
-    [SerializeField] private int inventorySize;
-    [SerializeField] private int inventoryCurSize = 0;
+    [SerializeField] private int inventoryBagSize;
+    [SerializeField] private int inventoryBagCurSize = 0;
 
    //public int InventoryCurSize { get { return inventoryCurSize; } set { inventoryCurSize = value;  OnChangeSize?.Invoke()} }
    //public UnityEvent OnChangeSize;
@@ -48,7 +48,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        if (itemList.Count < 12 && inventoryCurSize <= inventorySize)
+        if (itemList.Count < 12 && inventoryBagCurSize <= inventoryBagSize)
         {
            itemList.Add(item);
         }
@@ -57,7 +57,7 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("ÀÎº¥Åä¸®°¡ ²Ë Ã¡½À´Ï´Ù");
             return;
         }
-        inventoryCurSize += item.size;
+        inventoryBagCurSize += item.size;
     }
 
     public void AddSideItem(Item item)

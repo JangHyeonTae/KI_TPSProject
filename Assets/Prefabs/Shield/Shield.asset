@@ -21,6 +21,8 @@ MonoBehaviour:
   dropModel: {fileID: 6178910010185645882, guid: 2f9e88e85dcb3e24397d6f060996771a,
     type: 3}
   isAdd: 0
+  weaponOverride: {fileID: 22100000, guid: b130d5b2ba7371d4cabc8f1aa0bf69a4, type: 2}
   value: 10
-  canDouble: 0
+  canDouble: 1
   isRight: 0
+  attackDelay: 0

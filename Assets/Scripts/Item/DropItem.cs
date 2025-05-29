@@ -29,9 +29,14 @@ public class DropItem : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            inventory.itemList.Add(item);
+            //inventory.itemList.Add(item);
+            other.GetComponent<PlayerFight>().SpawnWeapon(DropWeapon());
             Destroy(gameObject);
         }
-        
+    }
+
+    private Weapon DropWeapon()
+    {
+        return item as Weapon;
     }
 }

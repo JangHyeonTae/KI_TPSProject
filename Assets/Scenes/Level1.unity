@@ -963,7 +963,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.4, y: 0.2, z: 1}
-  m_Center: {x: 0, y: 0.13, z: 0}
+  m_Center: {x: 0, y: 0.13, z: 0.7}
 --- !u!114 &27753472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73516,6 +73516,7 @@ GameObject:
   - component: {fileID: 1983052979}
   - component: {fileID: 1983052978}
   - component: {fileID: 1983052982}
+  - component: {fileID: 1983052984}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -73552,11 +73553,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c4d68e87b94a64889eb25ab2ceb070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponOverride: {fileID: 0}
-  rightWeaponSpawn: {fileID: 2126981817}
-  leftWeaponSpawn: {fileID: 816357182}
-  weapon: {fileID: 11400000, guid: b50c52df3e1a30043b62dc2f40b0b274, type: 2}
-  Attackdelay: 1
+  attackDelay: 2
+  delay: 2
+  attacking: 0
 --- !u!114 &1983052979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73574,7 +73573,7 @@ MonoBehaviour:
   walkSpeed: 2
   runSpeed: 5
   rotSpeed: 4
-  maxHp: 0
+  maxHp: 20
 --- !u!54 &1983052980
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73662,6 +73661,21 @@ MonoBehaviour:
   minPitch: -30
   maxPitch: 30
   mouseSensitivity: 5
+--- !u!114 &1983052984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983052976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b874bb8c0629c468bf3815d18485b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightWeaponSpawn: {fileID: 2126981817}
+  leftWeaponSpawn: {fileID: 816357182}
+  weapon: {fileID: 11400000, guid: e3121c93ea131784c91fcd8baf236ad5, type: 2}
 --- !u!1001 &1983130303
 PrefabInstance:
   m_ObjectHideFlags: 0

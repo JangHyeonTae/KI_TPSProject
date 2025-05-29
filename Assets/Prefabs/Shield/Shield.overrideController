@@ -8,4 +8,10 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Shield
   m_Controller: {fileID: 9100000, guid: dd3654be6c1d3bf409aa0e3edcc76bb1, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f5aa16e8d7347d14ba16d52fe4b7921c, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: cfcaee7e459130d489c153b3aeaaa3ae, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 210680178f4ec7045b47ffeeb53bc31d, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 7ee22f7d85f980746b3b73fc6164e9f4, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 3558db8e6c045c3418d8e7593f8a88de, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: a30fb0cc5ecbc7849b7c3105c130ec34, type: 3}

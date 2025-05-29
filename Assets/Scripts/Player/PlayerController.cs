@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamagable
 {
-    public bool isCanMove { get => attacking; }
+    public bool isCanMove { get => IsAttackAnim(); }
     private Animator animator;
     private PlayerStatus status;
     private PlayerMovement movement;
@@ -31,11 +31,6 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         delay += Time.deltaTime;
 
-        if (delay > attackDelay)
-            attacking = true;
-        else
-            attacking = false;
-
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("NormalAttack");
@@ -57,20 +52,21 @@ public class PlayerController : MonoBehaviour, IDamagable
         HandlePlayerController();
     }
     
-    //TODO : 애니메이션 이벤트로 플레이어 방어, 공격
-    public void Attack()
-    {
-        
-    }
+    
 
-    public void Defence()
+    public void TakeDmage(float amount)
     {
 
     }
-
-    public void TakeDmage()
+    
+    public bool IsAttackAnim()
     {
+        if (delay > attackDelay)
+             attacking = true;
+        else
+            attacking = false;
 
+        return attacking;
     }
 
     private void HandlePlayerController()
@@ -103,7 +99,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         }
 
         Vector3 moveDir = movement.HandlerPlayerMove(moveSpeed);
-        if (moveDir != Vector3.zero)
+        if (moveDir != Vector3.zero && IsAttackAnim())
         {
             status.IsMove = true;
         }

@@ -4,31 +4,56 @@ using UnityEngine;
 
 public class PlayerFight : MonoBehaviour
 {
-    
+    private PlayerStatus status;
     public Transform rightWeaponSpawn;
     public Transform leftWeaponSpawn;
-    [SerializeField] private Weapon weapon;
-    
+    [SerializeField] private Weapon weapon = null;
+    private Weapon currentWeapon;
 
+    GameObject target;
     private GameObject instWeapon;
 
     private void Start()
     {
-        SpawnWeapon();
+        status = GetComponent<PlayerStatus>();
+        SpawnWeapon(weapon);
     }
 
-    public void SpawnWeapon()
+    public void SpawnWeapon(Weapon _weapon)
     {
         Transform handTransform;
+        currentWeapon = _weapon;
 
-        if (weapon == null) return;
+        if (currentWeapon == null) return;
         Animator animator = GetComponent<Animator>();
 
-        if (weapon.isRight)
+        if (_weapon.WeaponTransform())
             handTransform = rightWeaponSpawn;
         else
             handTransform = leftWeaponSpawn;
 
-        weapon.Spawn(handTransform,animator);
+        currentWeapon.Spawn(handTransform,animator);
+    }
+
+    private void Attack()
+    {
+        IDamagable target = SetTarget();
+        if (target == null) return;
+        target.TakeDamage(currentWeapon.GetDamage() * status.curPower);
+    }
+
+    private IDamagable SetTarget()
+    {
+        if(target == null) return null;
+        return target.GetComponent<IDamagable>();
+    }
+
+    private void Defence()
+    {
+        PlayerController player = GetComponent<PlayerController>();
+        if (player.IsAttackAnim())
+        {
+            player.TakeDmage(0);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamagable
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         delay += Time.deltaTime;
 
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (Manager.InvenInstance.canMove)
             {
@@ -88,6 +89,11 @@ public class PlayerController : MonoBehaviour, IDamagable
             animator.SetTrigger("NormalAttack");
             delay = 0;
         }
+    }
+
+    private void GetItem()
+    {
+        
     }
 
     private void HandleDir()

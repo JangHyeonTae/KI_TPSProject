@@ -11,8 +11,15 @@ public class InventoryManager : MonoBehaviour
 
     public UnityEvent OnInventoryOpen;
 
-    public List<Item> itemList = new List<Item>();
+    public List<Item> itemList = new List<Item>(12);
+    public List<Item> sideItemList = new List<Item>();
+
     [SerializeField] private GameObject InventoryCanvas;
+    [SerializeField] private int inventorySize;
+    [SerializeField] private int inventoryCurSize = 0;
+
+   //public int InventoryCurSize { get { return inventoryCurSize; } set { inventoryCurSize = value;  OnChangeSize?.Invoke()} }
+   //public UnityEvent OnChangeSize;
 
     public bool canMove; 
     private void Awake()
@@ -31,6 +38,7 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         OnInventoryOpen.AddListener(PopUpInventroy);
+        //OnChangeSize.AddListener();
     }
 
     private void OnDisable()
@@ -40,8 +48,37 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        itemList.Add(item);
+        if (itemList.Count < 12 && inventoryCurSize <= inventorySize)
+        {
+           itemList.Add(item);
+        }
+        else
+        {
+            Debug.Log("ÀÎº¥Åä¸®°¡ ²Ë Ã¡½À´Ï´Ù");
+            return;
+        }
+        inventoryCurSize += item.size;
     }
+
+    public void AddSideItem(Item item)
+    {
+        sideItemList.Add(item);
+    }
+
+    public void RemoveSideItem()
+    {
+        sideItemList.Clear();
+    }
+
+    public void ShowSideItem(Item item)
+    {
+
+    }
+
+    //public void SetGuage()
+    //{
+    //    GetComponent<UIGuage>().GetUIGuage()
+    //}
 
     private void PopUpInventroy()
     {
@@ -56,6 +93,5 @@ public class InventoryManager : MonoBehaviour
             canMove = false;
         }
     }
-
 
 }

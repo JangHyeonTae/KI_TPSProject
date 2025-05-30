@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2782742779437463803}
   - component: {fileID: 4044537671203445436}
   m_Layer: 0
-  m_Name: DropItem_Shield
+  m_Name: DropItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2164674730489426428
 Transform:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21cc237bbc16cd49beb99571fea3458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: db544ff7a8a04b5478ff66d8be7e265b, type: 2}
+  item: {fileID: 0}
   prefab: {fileID: 0}
   peekRange: 1
   playerLayer:

@@ -61,6 +61,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotImage: {fileID: 8544043872312048961}
   itemData: {fileID: 0}
+  dropItem: {fileID: 2782742779437463803, guid: 092a3882864be1d478df658af9f66597,
+    type: 3}
+  OnDraging:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3882254510160102985
 MonoBehaviour:
   m_ObjectHideFlags: 0

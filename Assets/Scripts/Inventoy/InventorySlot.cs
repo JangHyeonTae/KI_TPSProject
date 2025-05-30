@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventorySlot : MonoBehaviour
     , IPointerEnterHandler // 하이라이트 시작
@@ -14,18 +16,34 @@ public class InventorySlot : MonoBehaviour
     // Drag부분이 inventoryCanvasSlot가 아니면 제자리,
 // inventoryCanvasSlot일경우 해당 inventoryCanvas 슬롯
 {
+    
     public Image slotImage;
-    public Item itemData;
+    public Item itemData = null;
 
-    private SlotParent slotParent;
+    private SlotParent slotSideParent;
     private int myIndex;
 
     private Vector3 starPos;
     private Vector3 dragPos;
+
+    //[SerializeField] DropItem dropItem;
+    
+    
+    
+    //private void OnEnable()
+    //{
+    //    OnDraging.AddListener(dropItem.DestroyObject);
+    //}
+    //
+    //private void OnDisable()
+    //{
+    //    OnDraging.RemoveListener(dropItem.DestroyObject);
+    //}
+
     public void Init(int index, SlotParent parent)
     {
         myIndex = index;
-        slotParent = parent;
+        slotSideParent = parent;
     }
 
     private void Update()
@@ -35,7 +53,7 @@ public class InventorySlot : MonoBehaviour
 
     private void SetSlot()
     {
-        itemData = slotParent.GetSideItemAt(myIndex);
+        itemData = slotSideParent.GetSideItemAt(myIndex);
         if (itemData == null)
         {
             slotImage.sprite = null;
@@ -82,7 +100,6 @@ public class InventorySlot : MonoBehaviour
             Manager.InvenInstance.MyInventoryPanel.SetActive(true);
             transform.position += (Vector3)eventData.delta;
             dragPos = transform.position;
-            Debug.Log($"{dragPos.x}, {dragPos.y}, {dragPos.z}");
         }
     }
     //Manager.InvenInstance.itemList일경우 Manager.InvenInstance.itemList.AddItem(item)으로 옮김
@@ -90,15 +107,36 @@ public class InventorySlot : MonoBehaviour
     //if()
     public void OnEndDrag(PointerEventData eventData)
     {
+        DropItem dropItem = FindObjectOfType<DropItem>() ;
+        
         Manager.InvenInstance.MyInventoryPanel.SetActive(false);
-        if (dragPos.x > 205 && dragPos.x < 441 && dragPos.y > 13 && dragPos.y < 245)
+        if (dragPos.x > 205 && dragPos.x < 441 && dragPos.y > 13 && dragPos.y < 245 && itemData != null)
         {
-            Debug.Log("CanMove");
+            if (dropItem != null)
+            {
+                dropItem.isDrag = true;
+            }
+            AddDrag(Manager.InvenInstance.MySlotParent.GetComponent<MySlotParent>());
         }
         else
         {
             transform.position = starPos;
+            if (dropItem != null)
+            {
+                dropItem.isDrag = false;
+            }
         }
+    }
+
+    private void AddDrag(MySlotParent mySlotParent)
+    {
+        if (itemData == null) return;
+        Debug.Log("AddTry");
+        slotSideParent.AddSideList();
+        mySlotParent.AddItem(itemData);
+        Manager.InvenInstance.RemoveSideItem(myIndex);
+        //mySlotParent.
+        gameObject.SetActive(false);    
     }
 
 }

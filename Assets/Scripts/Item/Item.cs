@@ -12,9 +12,11 @@ public abstract class Item : ScriptableObject
     [TextArea]public string description;
     public GameObject model;
     public GameObject dropModel;
+    public int Id;
 
     public bool isAdd;
     
+
     private void Start()
     {
         icon.sprite = imageSprite;

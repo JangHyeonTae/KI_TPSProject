@@ -15,8 +15,8 @@ public class InventoryManager : MonoBehaviour
     public List<Item> sideItemList = new List<Item>();
 
     [SerializeField] private GameObject InventoryCanvas;
+    public GameObject MySlotParent;
     public GameObject MyInventoryPanel;
-    public UnityEvent<bool> OnDraging;
 
     [SerializeField] private int inventoryBagSize;
     [SerializeField] private int inventoryBagCurSize = 0;
@@ -24,7 +24,8 @@ public class InventoryManager : MonoBehaviour
    //public int InventoryCurSize { get { return inventoryCurSize; } set { inventoryCurSize = value;  OnChangeSize?.Invoke()} }
    //public UnityEvent OnChangeSize;
 
-    public bool canMove; 
+    public bool canMove;
+
     private void Awake()
     {
         if (invenInstance == null)
@@ -69,9 +70,14 @@ public class InventoryManager : MonoBehaviour
         sideItemList.Add(item);
     }
 
-    public void RemoveSideItem()
+    public void RemoveAllSideItem()
     {
         sideItemList.Clear();
+    }
+
+    public void RemoveSideItem(int index)
+    {
+        sideItemList.RemoveAt(index);
     }
 
     //public void AddShowItem(Item item)

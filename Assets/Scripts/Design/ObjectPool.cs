@@ -18,12 +18,10 @@ public class ObjectPool
         poolList = new List<PooledObject>();
         poolParent = _parent;
         targetPrefab = _targetPrefab;
-    
         for (int i = 0; i < _initSize; i++)
         {
             CreatePool();
         }
-        Debug.Log($"{_targetPrefab.name}, {_initSize},{_parent.name}, {poolList.Count}");
     }
         
     public PooledObject GetPool()

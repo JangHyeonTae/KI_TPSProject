@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : Item
 {
     [SerializeField] AnimatorOverrideController weaponOverride = null;
-
+    
     public int value;
     public float range;
     public bool canDouble;
@@ -13,6 +13,7 @@ public class Weapon : Item
     public float attackDelay;
 
     private const string weaponName = "Weapon";
+
 
     public void Spawn(Transform handTransform, Animator animator)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEditor.Progress;
 
 public class DropItem : MonoBehaviour
@@ -11,12 +12,10 @@ public class DropItem : MonoBehaviour
     [SerializeField] private float peekRange;
     [SerializeField] private LayerMask playerLayer;
 
-    private bool hasShow = false;
-    private void Awake()
-    {
-        prefab = GetComponent<GameObject>();
-    }
+    public bool isDrag;
+    
 
+    private bool hasShow = false;
     private void OnEnable()
     {
         prefab = Instantiate(item.dropModel, transform);
@@ -38,6 +37,16 @@ public class DropItem : MonoBehaviour
                 Debug.Log("Add Side Item");
                 hasShow = true;
             }
+
+            if (isDrag)
+            {
+                //InventorySlot dragSlot = other.GetComponent<InventorySlot>();
+                //if (dragSlot != null)
+                //    Destroy(dragSlot.gameObject);
+                //Manager.InvenInstance.RemoveSideItem();
+
+                Destroy(gameObject);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -46,7 +55,7 @@ public class DropItem : MonoBehaviour
         {
             if (hasShow)
             {
-                Manager.InvenInstance.RemoveSideItem();
+                Manager.InvenInstance.RemoveAllSideItem();
                 hasShow = false;
             }
         }
@@ -56,21 +65,5 @@ public class DropItem : MonoBehaviour
         return item as Weapon;
     }
 
-    //private void Range()
-    //{
-    //    if(Physics.OverlapSphere(transform.position, peekRange, playerLayer).Length > 0)
-    //    {
-    //        
-    //    }
-    //    else
-    //    {
-    //        
-    //    }
-    //}
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, peekRange);
-    //}
 }

@@ -15,5 +15,23 @@ public class MyInventorySlot : PooledObject
     {
         myIndex = index;
         parent = _parent;
+        SetSlot();
+    }
+
+
+    private void SetSlot()
+    {
+        if (parent != null)
+            itemData = parent.GetSlot(myIndex);
+
+        if (itemData == null)
+        {
+            slotImage.sprite = null;
+            slotImage.color = new Color(1, 1, 1, 0);
+            return;
+        }
+
+        slotImage.sprite = itemData.imageSprite;
+        slotImage.color = Color.white;
     }
 }

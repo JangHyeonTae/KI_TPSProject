@@ -32,6 +32,13 @@ public class SlotParent : MonoBehaviour
         return Manager.InvenInstance.sideItemList[index];
     }
 
+    public void AddSideList()
+    {
+        InventorySlot inst = Instantiate(slot, transform);
+        inst.Init(slotList.Count, this);
+        slotList.Add(inst);
+    }
+
     //public Item ShowSideInventory()
     //{
     //    

@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db645d84d018524479d2c5bde8c563be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotImage: {fileID: 7266563707279599871}
+  itemData: {fileID: 0}
 --- !u!1 &1386618252847289194
 GameObject:
   m_ObjectHideFlags: 0

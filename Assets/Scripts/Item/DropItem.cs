@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,60 +7,74 @@ using static UnityEditor.Progress;
 
 public class DropItem : MonoBehaviour
 {
-    [SerializeField] Item item;
+    public static Item draggedItem;
+    [SerializeField]public Item item;
 
     public GameObject prefab;
     [SerializeField] private float peekRange;
     [SerializeField] private LayerMask playerLayer;
 
     public bool isDrag;
+    public UnityEvent<bool> OnDraging;
+
     
 
     private bool hasShow = false;
     private void OnEnable()
     {
         prefab = Instantiate(item.dropModel, transform);
+        OnDraging.AddListener(Draging);
     }
 
     private void OnDisable()
     {
+        OnDraging.RemoveListener(Draging);
         Destroy(prefab);
+        
     }
 
+    private void Update()
+    {
+        
+    }
+
+    public void Draging(bool value) => isDrag = value;
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == 7)
         {
+            SlotParent sideSlotParent = Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>();
             if (!hasShow)
             {
                 Manager.InvenInstance.AddSideItem(item);
-                Debug.Log("Add Side Item");
+                sideSlotParent.AddSideSlot(item);
                 hasShow = true;
             }
 
             if (isDrag)
             {
-                //InventorySlot dragSlot = other.GetComponent<InventorySlot>();
-                //if (dragSlot != null)
-                //    Destroy(dragSlot.gameObject);
-                //Manager.InvenInstance.RemoveSideItem();
-
+                Debug.Log($"Destroy : {gameObject.name}, {prefab.name}, {item.name}");
+                OnDraging?.Invoke(false);
                 Destroy(gameObject);
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == 7)
         {
+            SlotParent sideSlotParent = Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>();
             if (hasShow)
             {
-                Manager.InvenInstance.RemoveAllSideItem();
+                Manager.InvenInstance.RemoveSideItem(item);
+                Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().RemoveSideSlot(item);
                 hasShow = false;
             }
         }
     }
+
     private Weapon DropWeapon()
     {
         return item as Weapon;

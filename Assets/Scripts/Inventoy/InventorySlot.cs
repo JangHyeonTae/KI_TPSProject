@@ -26,34 +26,25 @@ public class InventorySlot : MonoBehaviour
     private Vector3 starPos;
     private Vector3 dragPos;
 
-    //[SerializeField] DropItem dropItem;
-    
-    
-    
-    //private void OnEnable()
-    //{
-    //    OnDraging.AddListener(dropItem.DestroyObject);
-    //}
-    //
-    //private void OnDisable()
-    //{
-    //    OnDraging.RemoveListener(dropItem.DestroyObject);
-    //}
 
-    public void Init(int index, SlotParent parent)
+    [SerializeField] private Image colorImage;
+    Color prevColor;
+
+    public void Init(Item _itemData, SlotParent parent)
     {
-        myIndex = index;
+        itemData = _itemData;
         slotSideParent = parent;
+        SetSlot();
     }
 
     private void Update()
     {
-        SetSlot();
+        
     }
 
     private void SetSlot()
     {
-        itemData = slotSideParent.GetSideItemAt(myIndex);
+
         if (itemData == null)
         {
             slotImage.sprite = null;
@@ -64,6 +55,27 @@ public class InventorySlot : MonoBehaviour
         slotImage.sprite = itemData.imageSprite;
         slotImage.color = Color.white;
     }
+
+    //public void Init(int index, SlotParent parent)
+    //{
+    //    myIndex = index;
+    //    slotSideParent = parent;
+    //    
+    //}
+
+    //private void SetSlot()
+    //{
+    //    itemData = slotSideParent.GetSideItemAt(myIndex);
+    //    if (itemData == null)
+    //    {
+    //        slotImage.sprite = null;
+    //        slotImage.color = new Color(1, 1, 1, 0);
+    //        return;
+    //    }
+    //
+    //    slotImage.sprite = itemData.imageSprite;
+    //    slotImage.color = Color.white;
+    //}
     
     
     //private void SetSideSlot()
@@ -76,15 +88,14 @@ public class InventorySlot : MonoBehaviour
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        slotImage.color = Color.yellow;
+        prevColor = colorImage.color;
+        colorImage.color = Color.yellow;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        slotImage.color = Color.white;
+        colorImage.color = prevColor;
     }
-
-
 
 
 
@@ -102,41 +113,41 @@ public class InventorySlot : MonoBehaviour
             dragPos = transform.position;
         }
     }
-    //Manager.InvenInstance.itemList일경우 Manager.InvenInstance.itemList.AddItem(item)으로 옮김
-    //slotParent의 
-    //if()
+
     public void OnEndDrag(PointerEventData eventData)
     {
-        DropItem dropItem = FindObjectOfType<DropItem>() ;
-        
         Manager.InvenInstance.MyInventoryPanel.SetActive(false);
         if (dragPos.x > 205 && dragPos.x < 441 && dragPos.y > 13 && dragPos.y < 245 && itemData != null)
         {
-            if (dropItem != null)
+            DropItem.draggedItem = itemData;
+            DropItem[] allDropItems = FindObjectsOfType<DropItem>();
+
+            foreach (DropItem drop in allDropItems)
             {
-                dropItem.isDrag = true;
+                if (drop.item == itemData)
+                {
+                    drop.OnDraging?.Invoke(true);
+                    break;
+                }
             }
             AddDrag(Manager.InvenInstance.MySlotParent.GetComponent<MySlotParent>());
         }
         else
         {
             transform.position = starPos;
-            if (dropItem != null)
-            {
-                dropItem.isDrag = false;
-            }
         }
     }
 
     private void AddDrag(MySlotParent mySlotParent)
     {
         if (itemData == null) return;
-        Debug.Log("AddTry");
-        slotSideParent.AddSideList();
+
+        SlotParent slotParent = slotSideParent.GetComponent<SlotParent>();
+        slotParent.AddSideSlot(itemData);
+
         mySlotParent.AddItem(itemData);
-        Manager.InvenInstance.RemoveSideItem(myIndex);
-        //mySlotParent.
-        gameObject.SetActive(false);    
+        Manager.InvenInstance.RemoveSideItem(itemData);
+        Destroy(gameObject);    
     }
 
 }

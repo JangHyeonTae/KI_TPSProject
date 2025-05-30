@@ -8,36 +8,42 @@ using UnityEngine.UI;
 public class SlotParent : MonoBehaviour
 {
     [SerializeField] private int slotSize;
-    List<InventorySlot> slotList;
-    [SerializeField] InventorySlot slot;
-
+    public List<InventorySlot> slotList;
+    public InventorySlot slot;
+    
 
     private void Start()
     {
         slotList = new List<InventorySlot>();
-
-        for (int i = 0; i < slotSize; i++)
-        {
-            InventorySlot inst = Instantiate(slot, gameObject.transform);
-            inst.Init(i, this); // 인덱스와 SlotParent 전달
-            slotList.Add(inst);
-        }
+    
     }
-
-    public Item GetSideItemAt(int index)
+    public void AddSideSlot(Item item)
     {
-        if (index < 0 || index >= Manager.InvenInstance.sideItemList.Count)
-            return null;
-
-        return Manager.InvenInstance.sideItemList[index];
+        slotList.Add(slot);
+        slot = Instantiate(slot, transform);
+        slot.Init(item, this);
     }
 
-    public void AddSideList()
+    public void RemoveSideSlot(Item item)
     {
-        InventorySlot inst = Instantiate(slot, transform);
-        inst.Init(slotList.Count, this);
-        slotList.Add(inst);
+        slotList.Remove(slot);
     }
+    //public Item GetSideItemAt(int index)
+    //{
+    //    if (index < 0 || index >= Manager.InvenInstance.sideItemList.Count)
+    //        return null;
+    //
+    //    return Manager.InvenInstance.sideItemList[index];
+    //}
+
+    //public void AddSideList()
+    //{
+    //    int index = Manager.InvenInstance.sideItemList.Count - 1;
+    //
+    //    InventorySlot inst = Instantiate(slot, transform);
+    //    inst.Init(index, this);
+    //    slotList.Add(inst);
+    //}
 
     //public Item ShowSideInventory()
     //{
@@ -50,6 +56,7 @@ public class SlotParent : MonoBehaviour
     //    }
     //    return slot
     //}
+
 
 
 }

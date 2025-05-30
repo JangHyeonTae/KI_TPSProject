@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotImage: {fileID: 7266563707279599871}
   itemData: {fileID: 0}
+  colorImage: {fileID: 2293860992446408818}
 --- !u!1 &1386618252847289194
 GameObject:
   m_ObjectHideFlags: 0

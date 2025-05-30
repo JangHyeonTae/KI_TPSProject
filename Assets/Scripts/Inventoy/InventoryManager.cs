@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private GameObject InventoryCanvas;
     public GameObject MySlotParent;
+    public GameObject SideSlotParent;
     public GameObject MyInventoryPanel;
 
     [SerializeField] private int inventoryBagSize;
@@ -75,9 +76,10 @@ public class InventoryManager : MonoBehaviour
         sideItemList.Clear();
     }
 
-    public void RemoveSideItem(int index)
+    public void RemoveSideItem(Item item)
     {
-        sideItemList.RemoveAt(index);
+        if (item == null) return;
+        sideItemList.Remove(item);
     }
 
     //public void AddShowItem(Item item)

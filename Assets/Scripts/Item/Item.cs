@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public abstract class Item : ScriptableObject
@@ -12,9 +14,9 @@ public abstract class Item : ScriptableObject
     [TextArea]public string description;
     public GameObject model;
     public GameObject dropModel;
-    public int Id;
 
     public bool isAdd;
+
     
 
     private void Start()

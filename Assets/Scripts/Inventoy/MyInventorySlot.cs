@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MyInventorySlot : MonoBehaviour
+public class MyInventorySlot : PooledObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Image slotImage;
+    public Item itemData;
 
-    // Update is called once per frame
-    void Update()
+    MySlotParent parent;
+
+    private int myIndex;
+    public void Init(int index, MySlotParent _parent)
     {
-        
+        myIndex = index;
+        parent = _parent;
     }
 }

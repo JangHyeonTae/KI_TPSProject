@@ -197,13 +197,14 @@ GameObject:
   - component: {fileID: 409734657860523249}
   - component: {fileID: 7848365890112706788}
   - component: {fileID: 3134112410143495651}
+  - component: {fileID: 361291224331562596}
   m_Layer: 5
   m_Name: MyInventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &409734657860523249
 RectTransform:
   m_ObjectHideFlags: 0
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7607843}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.48235294}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -261,6 +262,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &361291224331562596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612246265999268418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06a7b216fddb0d48a7a664ecc390763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &629142976616734881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2340,7 +2353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2358888597934208575}
   - component: {fileID: 2632445722974777247}
-  - component: {fileID: 5705140985643221485}
+  - component: {fileID: 7393194661161184182}
   m_Layer: 5
   m_Name: InventroyContents
   m_TagString: Untagged
@@ -2391,7 +2404,7 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &5705140985643221485
+--- !u!114 &7393194661161184182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2400,11 +2413,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3801070246605122562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10faf29b8a44719459656fe90265868e, type: 3}
+  m_Script: {fileID: 11500000, guid: 26385fd95b372c5428ad3db2b9e95910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotSize: 12
-  slot: {fileID: 5002711803470863274, guid: 82ee5a77a5f6f5d40903c6dd5b2f4589, type: 3}
+  slot: {fileID: -1257928284884296971, guid: 82ee5a77a5f6f5d40903c6dd5b2f4589, type: 3}
 --- !u!1 &3833800560817238845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7717960841128401271
 Transform:
   m_ObjectHideFlags: 0

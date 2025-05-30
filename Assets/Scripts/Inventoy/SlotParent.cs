@@ -10,24 +10,25 @@ public class SlotParent : MonoBehaviour
     [SerializeField] private int slotSize;
     public List<InventorySlot> slotList;
     public InventorySlot slot;
-    
 
+    private InventorySlot sideSlot;
     private void Start()
     {
         slotList = new List<InventorySlot>();
-    
     }
+
     public void AddSideSlot(Item item)
     {
         slotList.Add(slot);
-        slot = Instantiate(slot, transform);
-        slot.Init(item, this);
+        sideSlot = Instantiate(slot, transform);
+        sideSlot.Init(item, this);
     }
 
     public void RemoveSideSlot(Item item)
     {
         slotList.Remove(slot);
     }
+
     //public Item GetSideItemAt(int index)
     //{
     //    if (index < 0 || index >= Manager.InvenInstance.sideItemList.Count)

@@ -37,11 +37,6 @@ public class InventorySlot : MonoBehaviour
         SetSlot();
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void SetSlot()
     {
 

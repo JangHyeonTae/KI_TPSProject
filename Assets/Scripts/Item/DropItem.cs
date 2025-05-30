@@ -40,7 +40,7 @@ public class DropItem : MonoBehaviour
 
     public void Draging(bool value) => isDrag = value;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 7)
         {
@@ -69,7 +69,7 @@ public class DropItem : MonoBehaviour
             if (hasShow)
             {
                 Manager.InvenInstance.RemoveSideItem(item);
-                Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().RemoveSideSlot(item);
+                sideSlotParent.RemoveSideSlot(item);
                 hasShow = false;
             }
         }

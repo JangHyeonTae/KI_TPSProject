@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamagable
 { 
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour, IDamagable
     public float attackDelay = 1.6f;
     public float delay = 0;
     private bool attacking;
+
+    public HpGuageUI hpBar; 
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -32,7 +35,10 @@ public class PlayerController : MonoBehaviour, IDamagable
     void Update()
     {
         delay += Time.deltaTime;
-
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            TakeDmage(10);
+        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -64,9 +70,15 @@ public class PlayerController : MonoBehaviour, IDamagable
     
     
 
-    public void TakeDmage(float amount)
+    public void TakeDmage(int amount)
     {
+        status.CurHp = Mathf.Max(0, status.CurHp - amount);
+        if (status.CurHp == 0) Debug.Log("³¡");
+    }
 
+    public void Heal(int amount)
+    {
+        status.CurHp = Mathf.Max(status.maxHp, status.CurHp + amount);
     }
     
     public bool IsAttackAnim()
@@ -89,11 +101,6 @@ public class PlayerController : MonoBehaviour, IDamagable
             animator.SetTrigger("NormalAttack");
             delay = 0;
         }
-    }
-
-    private void GetItem()
-    {
-        
     }
 
     private void HandleDir()
@@ -139,12 +146,19 @@ public class PlayerController : MonoBehaviour, IDamagable
     private void Subscribe()
     {
         status.OnMove += SetMoveAnim;
+        status.OnChangedHp += SetHpGuageUI;
     }
 
     private void UnSubscribe()
     {
         status.OnMove -= SetMoveAnim;
+        status.OnChangedHp -= SetHpGuageUI;
     }
 
     private void SetMoveAnim(bool value) => animator.SetBool("IsMove",value);
+    private void SetHpGuageUI(int value)
+    {
+        float hp = value / (float)status.maxHp;
+        hpBar.HPGuageUI(hp);
+    }
 }

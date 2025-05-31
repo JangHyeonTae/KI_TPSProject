@@ -1,16 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIGuage : MonoBehaviour
 {
 
-    [SerializeField] Image guageImage;
+    [SerializeField] Image bagGuageImage;
+    [SerializeField] TextMeshProUGUI bagText;
 
-    public void GetUIGuage(int amount)
+    [SerializeField] Image powerGuage;
+
+    [SerializeField] TextMeshProUGUI itemDsc;
+
+    public void BagGuageUI(float value)
     {
-        guageImage.fillAmount = amount;
+        Debug.Log($"UI : {value}");
+        bagGuageImage.fillAmount = value;
+        int bagValue = (int)value * Manager.InvenInstance.maxSum;
+        bagText.text = bagValue.ToString();
+    }
+
+    public void PowerGuageUI(PlayerStatus status, Weapon weapon = null)
+    {
+        powerGuage.fillAmount = (status.curPower + weapon.value)/100;
     }
     
+
+    private void ItemDsc(Item item)
+    {
+        itemDsc.text = item.description;
+    }
+
 }

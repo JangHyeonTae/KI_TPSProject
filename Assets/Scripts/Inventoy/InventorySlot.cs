@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -146,7 +147,6 @@ public class InventorySlot : PooledObject
         mySlotParent.AddItem(itemData);
         Manager.InvenInstance.RemoveSideItem(itemData);
         Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().RemoveSideItem(itemData);
-        Destroy(gameObject);    
     }
 
 }

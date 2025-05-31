@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
         status = GetComponent<PlayerStatus>();
     }
 
+    private void Start()
+    {
+        status.CurHp = status.maxHp;
+    }
+
     public void SetAvatarRotation(Vector3 direction)
     {
         if (direction == Vector3.zero) return;

@@ -17,9 +17,17 @@ public class DropItem : MonoBehaviour
     public bool isDrag;
     public UnityEvent<bool> OnDraging;
 
-    
+    public string name;
 
     private bool hasShow = false;
+
+    private void Start() => Init();
+
+    private void Init()
+    {
+        name = gameObject.name;
+    }
+
     private void OnEnable()
     {
         prefab = Instantiate(item.dropModel, transform);
@@ -47,9 +55,13 @@ public class DropItem : MonoBehaviour
 
     private IEnumerator DestroyAfterFrame()
     {
+        GameObject target = GameObject.Find(name);
         yield return null;
-        Destroy(gameObject);
+
+        if(target != null)
+            Destroy(target);
     }
+
 
     public void Draging(bool value) => isDrag = value;
 

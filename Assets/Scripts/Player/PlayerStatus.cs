@@ -21,7 +21,7 @@ public class PlayerStatus : MonoBehaviour
     public float rotSpeed;
 
     [SerializeField]
-    public float curPower;
+    public int curPower;
 
     public int maxHp;
 

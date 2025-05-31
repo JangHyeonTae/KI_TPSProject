@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2782742779437463803}
   - component: {fileID: 4044537671203445436}
   m_Layer: 0
-  m_Name: DropItem
+  m_Name: DropOldSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2164674730489426428
 Transform:
   m_ObjectHideFlags: 0
@@ -45,12 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21cc237bbc16cd49beb99571fea3458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: b50c52df3e1a30043b62dc2f40b0b274, type: 2}
   prefab: {fileID: 0}
   peekRange: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  isDrag: 0
+  OnDraging:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &4044537671203445436
 BoxCollider:
   m_ObjectHideFlags: 0

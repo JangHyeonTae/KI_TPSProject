@@ -35,13 +35,20 @@ public class DropItem : MonoBehaviour
 
     private void Update()
     {
-
+        //이벤트로 isDrat == true 일경우 밑의 코드 실행
         if (isDrag)
         {
             Debug.Log($"Destroy : {gameObject.name}, {prefab.name}, {item.name}");
             OnDraging?.Invoke(false);
-            Destroy(gameObject);
+            //PooledObject의 ReturnObjectPool이 호출되기 전에 Destroy되지 않아야됨
+            StartCoroutine(DestroyAfterFrame());
         }
+    }
+
+    private IEnumerator DestroyAfterFrame()
+    {
+        yield return null;
+        Destroy(gameObject);
     }
 
     public void Draging(bool value) => isDrag = value;

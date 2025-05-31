@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2782742779437463803}
   - component: {fileID: 4044537671203445436}
   m_Layer: 0
-  m_Name: DropItem_ShortSword
+  m_Name: DropShortSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  isDrag: 0
+  OnDraging:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &4044537671203445436
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -47,9 +47,9 @@ public class SlotParent : MonoBehaviour
     
         if (targetSlot != null)
         {
-            slotList.Remove(targetSlot);
-            targetSlot.Outit();
             targetSlot.ReturnObjectPool();
+            targetSlot.Outit();
+            slotList.Remove(targetSlot);
             Debug.Log($"SlotParent : {targetSlot.gameObject.name}");
         }
     }

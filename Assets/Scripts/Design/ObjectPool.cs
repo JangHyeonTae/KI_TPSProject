@@ -23,20 +23,37 @@ public class ObjectPool
             CreatePool();
         }
     }
-        
+    
     public PooledObject GetPool()
     {
-        if (poolList.Count == 0) return null;
+        if (poolList.Count == 0)  CreatePool();
 
-        PooledObject obj = poolList[poolList.Count-1];
-        poolList.RemoveAt(poolList.Count - 1);
-        obj.gameObject.SetActive(true);
+        //아이템 제거 후 다시 감지할 때
+        while (poolList.Count > 0)
+        {
+            PooledObject obj = poolList[poolList.Count - 1];
+            poolList.RemoveAt(poolList.Count - 1);
 
-        return obj;
+            if (obj == null || obj.gameObject == null)
+            {
+                Debug.Log("제거된 오브젝트 감지, 스킵");
+                continue;
+            }
+
+            obj.gameObject.SetActive(true);
+
+            return obj;
+        }
+        return null;
     }
 
     public void AddPool(PooledObject inst)
     {
+        if (inst == null || inst.gameObject == null)
+        {
+            return;
+        }
+
         inst.transform.parent = poolParent.transform;
         inst.gameObject.SetActive(false);
         poolList.Add(inst);
@@ -45,7 +62,7 @@ public class ObjectPool
     public void CreatePool()
     {
         PooledObject inst = MonoBehaviour.Instantiate(targetPrefab);
-        targetPrefab.PooledInit(this);
+        inst.PooledInit(this);
         AddPool(inst);
     }
 }

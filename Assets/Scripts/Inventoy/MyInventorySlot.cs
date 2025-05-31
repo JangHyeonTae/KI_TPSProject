@@ -22,6 +22,11 @@ public class MyInventorySlot : PooledObject, IPointerClickHandler, IPointerEnter
         SetSlot();
     }
 
+    public void Outit()
+    {
+        itemData = null;
+    }
+
     private void SetSlot()
     {
         //if (parent != null)

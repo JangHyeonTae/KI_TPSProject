@@ -14,8 +14,6 @@ public class InventorySlot : PooledObject
     , IBeginDragHandler
     , IDragHandler         // IDragHandler 시작
     , IEndDragHandler     
-    // Drag부분이 inventoryCanvasSlot가 아니면 제자리,
-// inventoryCanvasSlot일경우 해당 inventoryCanvas 슬롯
 {
     
     public Image slotImage;
@@ -55,36 +53,6 @@ public class InventorySlot : PooledObject
         slotImage.sprite = itemData.imageSprite;
         slotImage.color = Color.white;
     }
-
-    //public void Init(int index, SlotParent parent)
-    //{
-    //    myIndex = index;
-    //    slotSideParent = parent;
-    //    
-    //}
-
-    //private void SetSlot()
-    //{
-    //    itemData = slotSideParent.GetSideItemAt(myIndex);
-    //    if (itemData == null)
-    //    {
-    //        slotImage.sprite = null;
-    //        slotImage.color = new Color(1, 1, 1, 0);
-    //        return;
-    //    }
-    //
-    //    slotImage.sprite = itemData.imageSprite;
-    //    slotImage.color = Color.white;
-    //}
-    
-    
-    //private void SetSideSlot()
-    //{
-    //    itemData = slotParent.ShowSideInventory();
-    //    if (itemData == null) return;
-    //    slotImage.sprite = itemData.imageSprite;
-    //}
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {

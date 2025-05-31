@@ -48,14 +48,14 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         OnInventoryOpen.AddListener(PopUpInventroy);
-        OnChangeBagSum.AddListener(BadGuageUI);
+        OnChangeBagSum.AddListener(BagGuage);
         //OnDraging.AddListener(DrapOpen);
     }
 
     private void OnDisable()
     {
         OnInventoryOpen.RemoveListener(PopUpInventroy);
-        OnChangeBagSum.RemoveListener(BadGuageUI);
+        OnChangeBagSum.RemoveListener(BagGuage);
         //OnDraging.RemoveListener(DrapOpen);
     }
 
@@ -64,7 +64,7 @@ public class InventoryManager : MonoBehaviour
         itemList = new List<Item>();
         sideItemList = new List<Item>();
 
-        sum = 0;
+        Sum = 0;
         maxSum = 100;
 
     }
@@ -122,7 +122,7 @@ public class InventoryManager : MonoBehaviour
 
     //private void DrapOpen(bool value) => MyInventoryPanel.SetActive(value);
 
-    public void BadGuageUI(int value)
+    public void BagGuage(int value)
     {
         Debug.Log($"BagGuageUI : {value}");
         float bagGuage = value / (float)maxSum;

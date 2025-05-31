@@ -11,10 +11,9 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager InvenInstance { get  { return invenInstance; } }
 
     public int maxSum = 100;
-    public int curSum;
-    private int sum = 0;
-    public int Sum { get { return sum; } set { sum = value; OnChangeBackSum?.Invoke(sum); } }
-    public UnityEvent<int> OnChangeBackSum;
+    private int sum;
+    public int Sum { get { return sum; } set { sum = value; OnChangeBagSum?.Invoke(sum); } }
+    public UnityEvent<int> OnChangeBagSum;
 
     public UnityEvent OnInventoryOpen;
 
@@ -49,14 +48,14 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         OnInventoryOpen.AddListener(PopUpInventroy);
-        OnChangeBackSum.AddListener(BadGuageUI);
+        OnChangeBagSum.AddListener(BadGuageUI);
         //OnDraging.AddListener(DrapOpen);
     }
 
     private void OnDisable()
     {
         OnInventoryOpen.RemoveListener(PopUpInventroy);
-        OnChangeBackSum.AddListener(BadGuageUI);
+        OnChangeBagSum.RemoveListener(BadGuageUI);
         //OnDraging.RemoveListener(DrapOpen);
     }
 
@@ -66,19 +65,16 @@ public class InventoryManager : MonoBehaviour
         sideItemList = new List<Item>();
 
         sum = 0;
-        curSum = 0;
         maxSum = 100;
 
     }
 
     public void AddItem(Item item)
     {
-        if (itemList.Count < 12)// && inventoryBagCurSize <= inventoryBagSize)
+        if (itemList.Count < 12 && sum < maxSum)// && inventoryBagCurSize <= inventoryBagSize)
         {
            itemList.Add(item);
-            curSum = item.size;
-            sum += curSum;
-            Debug.Log($"curSum : {curSum}, sum : {sum}");
+            Sum += item.size;
         }
         else
         {
@@ -86,6 +82,7 @@ public class InventoryManager : MonoBehaviour
             return;
         }
     }
+
 
     public void AddSideItem(Item item)
     {
@@ -128,7 +125,7 @@ public class InventoryManager : MonoBehaviour
     public void BadGuageUI(int value)
     {
         Debug.Log($"BagGuageUI : {value}");
-        float bagGuage = sum/(float)maxSum;
+        float bagGuage = value / (float)maxSum;
         BagGuageUI.BagGuageUI(bagGuage);
     }
 }

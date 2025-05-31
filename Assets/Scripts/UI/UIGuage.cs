@@ -18,7 +18,7 @@ public class UIGuage : MonoBehaviour
     {
         Debug.Log($"UI : {value}");
         bagGuageImage.fillAmount = value;
-        int bagValue = (int)value * Manager.InvenInstance.maxSum;
+        float bagValue = value * Manager.InvenInstance.maxSum;
         bagText.text = bagValue.ToString();
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PooledObject : MonoBehaviour
 {
+
+    public Item itemData = null;
     private ObjectPool objectPool { get; set; }
 
     public void PooledInit(ObjectPool _objectPool)
@@ -11,7 +13,7 @@ public class PooledObject : MonoBehaviour
         objectPool = _objectPool;
     }
 
-    public void ReturnPool()
+    public void ReturnObjectPool()
     {
         objectPool.AddPool(this);
     }

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : PooledObject
     , IPointerEnterHandler // 하이라이트 시작
     , IPointerExitHandler  // 하이라이트 마칠때
     , IBeginDragHandler
@@ -18,7 +18,6 @@ public class InventorySlot : MonoBehaviour
 {
     
     public Image slotImage;
-    public Item itemData = null;
 
     private SlotParent slotSideParent;
     private int myIndex;
@@ -35,6 +34,11 @@ public class InventorySlot : MonoBehaviour
         itemData = _itemData;
         slotSideParent = parent;
         SetSlot();
+    }
+
+    public void Outit()
+    {
+        itemData = null;
     }
 
     private void SetSlot()
@@ -137,11 +141,11 @@ public class InventorySlot : MonoBehaviour
     {
         if (itemData == null) return;
 
-        SlotParent slotParent = slotSideParent.GetComponent<SlotParent>();
-        slotParent.AddSideSlot(itemData);
+        //SlotParent slotParent = slotSideParent;
 
         mySlotParent.AddItem(itemData);
         Manager.InvenInstance.RemoveSideItem(itemData);
+        Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().RemoveSideItem(itemData);
         Destroy(gameObject);    
     }
 

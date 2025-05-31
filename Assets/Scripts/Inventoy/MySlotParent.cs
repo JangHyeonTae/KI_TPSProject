@@ -22,18 +22,20 @@ public class MySlotParent : MonoBehaviour
 
         PooledObject obj = slotPool.GetPool();
         MyInventorySlot slotScript = obj.GetComponent<MyInventorySlot>();
-        int index = Manager.InvenInstance.itemList.Count - 1;
-        slotScript.Init(index, this);
+        //int index = Manager.InvenInstance.itemList.Count - 1;
+        //slotScript.Init(index, this);
+        slotScript.Init(item, this);
         Debug.Log($"{item.name}");
     }
 
-    public Item GetSlot(int index)
-    {
-        //inventoryManager의 list 인덱스에 해당하는 
-        if (index < 0 || index >= Manager.InvenInstance.itemList.Count) 
-            return null;
-
-        return Manager.InvenInstance.itemList[index];
-    }
+    //public Item GetSlot(int index)
+    //{
+    //    //inventoryManager의 list 인덱스에 해당하는 
+    //    if (index < 0 || index >= Manager.InvenInstance.itemList.Count) 
+    //        return null;
+    //
+    //    return Manager.InvenInstance.itemList[index];
+    //}
 
 }
+;

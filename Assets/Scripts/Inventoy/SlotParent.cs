@@ -7,56 +7,102 @@ using UnityEngine.UI;
 
 public class SlotParent : MonoBehaviour
 {
-    [SerializeField] private int slotSize;
-    public List<InventorySlot> slotList;
     public InventorySlot slot;
-
-    private InventorySlot sideSlot;
+    public List<InventorySlot> slotList;
+    private ObjectPool sideSlotPool;
+    
+    private void Awake()
+    {
+        sideSlotPool = new ObjectPool(slot,8,transform);
+    }
+    
     private void Start()
     {
         slotList = new List<InventorySlot>();
     }
-
-    public void AddSideSlot(Item item)
+    
+    public void AddSideItem(Item item)
     {
-        slotList.Add(slot);
-        sideSlot = Instantiate(slot, transform);
+        PooledObject obj = sideSlotPool.GetPool();
+        if (obj == null) return;
+        InventorySlot sideSlot = obj.GetComponent<InventorySlot>();
+        slotList.Add(sideSlot);
         sideSlot.Init(item, this);
     }
-
-    public void RemoveSideSlot(Item item)
+    
+    public void RemoveSideItem(Item item)
     {
-        slotList.Remove(slot);
+        
+        InventorySlot targetSlot = null;
+    
+        
+        for (int i = 0; i < slotList.Count; i++)
+        {
+            if (slotList[i] != null && slotList[i].itemData == item)
+            {
+                targetSlot = slotList[i];
+                break;
+            }
+        }
+    
+        if (targetSlot != null)
+        {
+            slotList.Remove(targetSlot);
+            targetSlot.Outit();
+            targetSlot.ReturnObjectPool();
+            Debug.Log($"SlotParent : {targetSlot.gameObject.name}");
+        }
     }
 
-    //public Item GetSideItemAt(int index)
-    //{
-    //    if (index < 0 || index >= Manager.InvenInstance.sideItemList.Count)
-    //        return null;
-    //
-    //    return Manager.InvenInstance.sideItemList[index];
-    //}
 
-    //public void AddSideList()
-    //{
-    //    int index = Manager.InvenInstance.sideItemList.Count - 1;
-    //
-    //    InventorySlot inst = Instantiate(slot, transform);
-    //    inst.Init(index, this);
-    //    slotList.Add(inst);
-    //}
 
-    //public Item ShowSideInventory()
+
+
+
+
+
+
+    //[SerializeField] private int slotSize;
+    //public List<InventorySlot> slotList;
+    //public InventorySlot slot;
+    //
+    //private void Start()
     //{
-    //    
-    //    for (int i = 0; i < Manager.InvenInstance.sideItemList.Count; i++)
+    //    slotList = new List<InventorySlot>();
+    //}
+    //
+    //public void AddSideItem(Item item)
+    //{
+    //    slotList.Add(slot);
+    //    InventorySlot sideSlot = sideSlot = Instantiate(slot, transform);
+    //    if (sideSlot == null)
     //    {
-    //        if (slotList[i] == null) return null;
-    //    
-    //        slotList[i].itemData = Manager.InvenInstance.sideItemList[i];
+    //        sideSlot.Init(item, this);
     //    }
-    //    return slot
     //}
+    //
+    //public void RemoveSideItem(Item item)
+    //{
+    //    InventorySlot targetSlot = null;
+    //
+    //    for (int i = 0; i < slotList.Count; i++)
+    //    {
+    //        if (slotList[i] != null && slotList[i].itemData == item)
+    //        {
+    //            targetSlot = slotList[i];
+    //            break;
+    //        }
+    //    }
+    //
+    //    if (targetSlot != null)
+    //    {
+    //        slotList.Remove(targetSlot);
+    //        targetSlot.Outit();
+    //        Debug.Log($"SlotParent : {targetSlot.gameObject.name}");
+    //        Destroy(targetSlot);
+    //    }
+    //}
+
 
 
 

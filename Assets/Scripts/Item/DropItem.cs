@@ -35,7 +35,13 @@ public class DropItem : MonoBehaviour
 
     private void Update()
     {
-        
+
+        if (isDrag)
+        {
+            Debug.Log($"Destroy : {gameObject.name}, {prefab.name}, {item.name}");
+            OnDraging?.Invoke(false);
+            Destroy(gameObject);
+        }
     }
 
     public void Draging(bool value) => isDrag = value;
@@ -44,20 +50,13 @@ public class DropItem : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            SlotParent sideSlotParent = Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>();
             if (!hasShow)
             {
                 Manager.InvenInstance.AddSideItem(item);
-                sideSlotParent.AddSideSlot(item);
+                Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().AddSideItem(item);
                 hasShow = true;
             }
 
-            if (isDrag)
-            {
-                Debug.Log($"Destroy : {gameObject.name}, {prefab.name}, {item.name}");
-                OnDraging?.Invoke(false);
-                Destroy(gameObject);
-            }
         }
     }
 
@@ -65,11 +64,11 @@ public class DropItem : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            SlotParent sideSlotParent = Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>();
             if (hasShow)
             {
                 Manager.InvenInstance.RemoveSideItem(item);
-                sideSlotParent.RemoveSideSlot(item);
+                Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().RemoveSideItem(item);
+                Debug.Log($"Drop : {item.name}");
                 hasShow = false;
             }
         }

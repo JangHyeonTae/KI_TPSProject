@@ -7,24 +7,25 @@ using UnityEngine.UI;
 public class MyInventorySlot : PooledObject, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image slotImage;
-    public Item itemData;
-
+    public string itemName = null;
     MySlotParent parent;
 
     [SerializeField] private Image colorImage;
     Color prevColor;
 
     private int myIndex;
-    public void Init(int index, MySlotParent _parent)
+    public void Init(Item _item, MySlotParent _parent)
     {
-        myIndex = index;
+        itemData = _item;
         parent = _parent;
+        itemName = _item.name;
         SetSlot();
     }
+
     private void SetSlot()
     {
-        if (parent != null)
-            itemData = parent.GetSlot(myIndex);
+        //if (parent != null)
+        //    itemData = parent.GetSlot(myIndex);
 
         if (itemData == null)
         {
@@ -46,7 +47,15 @@ public class MyInventorySlot : PooledObject, IPointerClickHandler, IPointerEnter
         //사용하시겠습니까? yes/no 떠야됨
         //Manager.InvenInstance.itemList[??] 해당 아이템 삭제?? 
         //클릭 이벤트 : onClick.AddListener?
-        Debug.Log("누름");
+        
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("정보 표시");
+        }
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("사용 표시");
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

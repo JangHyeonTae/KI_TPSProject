@@ -53,13 +53,4 @@ public class MySlotParent : MonoBehaviour
         }
     }
 
-    //public Item GetSlot(int index)
-    //{
-    //    //inventoryManager의 list 인덱스에 해당하는 
-    //    if (index < 0 || index >= Manager.InvenInstance.itemList.Count) 
-    //        return null;
-    //
-    //    return Manager.InvenInstance.itemList[index];
-    //}
-
 }

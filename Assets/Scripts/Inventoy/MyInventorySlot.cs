@@ -4,7 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MyInventorySlot : PooledObject, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MyInventorySlot : PooledObject
+    , IPointerClickHandler
+    , IPointerEnterHandler
+    , IPointerExitHandler
+    , IBeginDragHandler
+    , IDragHandler
+    , IEndDragHandler
 {
     public Image slotImage;
     public string itemName = null;
@@ -13,7 +19,9 @@ public class MyInventorySlot : PooledObject, IPointerClickHandler, IPointerEnter
     [SerializeField] private Image colorImage;
     Color prevColor;
 
-    private int myIndex;
+    Vector3 startPos;
+    Vector3 dragPos;
+
     public void Init(Item _item, MySlotParent _parent)
     {
         itemData = _item;
@@ -29,9 +37,6 @@ public class MyInventorySlot : PooledObject, IPointerClickHandler, IPointerEnter
 
     private void SetSlot()
     {
-        //if (parent != null)
-        //    itemData = parent.GetSlot(myIndex);
-
         if (itemData == null)
         {
             slotImage.sprite = null;
@@ -43,23 +48,49 @@ public class MyInventorySlot : PooledObject, IPointerClickHandler, IPointerEnter
         slotImage.color = Color.white;
     }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        startPos = transform.position;
+    }
 
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Manager.InvenInstance.MyInventoryOutPanel.SetActive(true);
+            transform.position += (Vector3)eventData.delta;
+            dragPos = transform.position;
+        }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Manager.InvenInstance.MyInventoryOutPanel.SetActive(false);
+        if (dragPos.x > 1850 || dragPos.x < 850 || dragPos.y > 1000 || dragPos.y < 100 && itemData != null)
+        {
+            AddDrag(Manager.InvenInstance.MySlotParent.GetComponent<MySlotParent>());
+        }
+        else
+        {
+            transform.position = startPos;
+        }
+    }
+
+    private void AddDrag(MySlotParent parent)
+    {
+        if (parent == null) return;
+
+        parent.RemoveItem(itemData);
+        Manager.InvenInstance.RemoveItem(itemData);
+    }
 
 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //사용하시겠습니까? yes/no 떠야됨
-        //Manager.InvenInstance.itemList[??] 해당 아이템 삭제?? 
-        //클릭 이벤트 : onClick.AddListener?
-        
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            Debug.Log("정보 표시");
-        }
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("사용 표시");
+            Debug.Log("정보 표시");
         }
     }
 

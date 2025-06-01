@@ -21,7 +21,7 @@ public class InventorySlot : PooledObject
     private SlotParent slotSideParent;
     private int myIndex;
 
-    private Vector3 starPos;
+    private Vector3 startPos;
     private Vector3 dragPos;
 
 
@@ -69,7 +69,7 @@ public class InventorySlot : PooledObject
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        starPos = transform.position;
+        startPos = transform.position;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -103,13 +103,13 @@ public class InventorySlot : PooledObject
         }
         else
         {
-            transform.position = starPos;
+            transform.position = startPos;
         }
     }
 
     private void AddDrag(MySlotParent mySlotParent)
     {
-        if (itemData == null) return;
+        if (mySlotParent == null) return;
 
         
         mySlotParent.AddItem(itemData);

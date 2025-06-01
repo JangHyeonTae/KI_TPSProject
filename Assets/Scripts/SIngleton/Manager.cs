@@ -9,4 +9,5 @@ public class Manager : MonoBehaviour
     public static GameManager GameInstance => GameManager.GameInstance;
 
     public static InventoryManager InvenInstance => InventoryManager.InvenInstance;
+
 }

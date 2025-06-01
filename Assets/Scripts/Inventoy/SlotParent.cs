@@ -13,7 +13,7 @@ public class SlotParent : MonoBehaviour
     
     private void Awake()
     {
-        sideSlotPool = new ObjectPool(slot,8,transform);
+        sideSlotPool = new ObjectPool(slot,6,transform);
     }
     
     private void Start()

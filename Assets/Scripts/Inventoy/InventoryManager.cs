@@ -15,6 +15,10 @@ public class InventoryManager : MonoBehaviour
     public int Sum { get { return sum; } set { sum = value; OnChangeBagSum?.Invoke(sum); } }
     public UnityEvent<int> OnChangeBagSum;
 
+    //private bool isFull = false;
+    //public bool IsFull { get { return isFull; } set { isFull = value; OnFull?.Invoke(isFull); } }
+    //public UnityEvent<bool> OnFull;
+
     public UnityEvent OnInventoryOpen;
 
     public List<Item> itemList;
@@ -49,6 +53,7 @@ public class InventoryManager : MonoBehaviour
     {
         OnInventoryOpen.AddListener(PopUpInventroy);
         OnChangeBagSum.AddListener(BagGuage);
+        //OnFull.AddListener(IsBagFull);
         //OnDraging.AddListener(DrapOpen);
     }
 
@@ -56,6 +61,7 @@ public class InventoryManager : MonoBehaviour
     {
         OnInventoryOpen.RemoveListener(PopUpInventroy);
         OnChangeBagSum.RemoveListener(BagGuage);
+        //OnFull.RemoveListener(IsBagFull);
         //OnDraging.RemoveListener(DrapOpen);
     }
 
@@ -71,15 +77,27 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        if (itemList.Count < 12 && sum < maxSum)// && inventoryBagCurSize <= inventoryBagSize)
+        if (itemList.Count < 12)// && inventoryBagCurSize <= inventoryBagSize)
         {
-           itemList.Add(item);
+
+            //if (Sum < maxSum)
+            //{
+            //    IsFull = true;
+            //    
+            //    Debug.Log("ÀÎº¥Åä¸®°¡ ²Ë Ã¡½À´Ï´Ù");
+            //    return;
+            //}
+            itemList.Add(item);
             Sum += item.size;
         }
-        else
+    }
+
+    public void RemoveItem(Item item)
+    {
+        if (itemList.Count > 0)
         {
-            Debug.Log("ÀÎº¥Åä¸®°¡ ²Ë Ã¡½À´Ï´Ù");
-            return;
+            itemList.Remove(item);
+            Sum = Mathf.Max(0, Sum - item.size);
         }
     }
 
@@ -128,4 +146,6 @@ public class InventoryManager : MonoBehaviour
         float bagGuage = value / (float)maxSum;
         BagGuageUI.BagGuageUI(bagGuage);
     }
+
+    //public void IsBagFull(bool value) => IsFull = value;
 }

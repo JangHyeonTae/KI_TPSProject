@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         }
         
         float moveSpeed;
-        if (status.IsAttack)
+        if (status.IsAttack)// || Manager.InvenInstance.IsFull)
         {
             moveSpeed = status.downSpeed;
         }

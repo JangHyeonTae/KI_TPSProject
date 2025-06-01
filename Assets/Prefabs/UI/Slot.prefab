@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 96959262767196112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7414693900229963299}
@@ -89,8 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db645d84d018524479d2c5bde8c563be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotImage: {fileID: 7266563707279599871}
   itemData: {fileID: 0}
+  slotImage: {fileID: 7266563707279599871}
+  itemName: 
   colorImage: {fileID: 2293860992446408818}
 --- !u!1 &1386618252847289194
 GameObject:

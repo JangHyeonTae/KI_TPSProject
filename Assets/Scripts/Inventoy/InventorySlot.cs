@@ -85,8 +85,9 @@ public class InventorySlot : PooledObject
     public void OnEndDrag(PointerEventData eventData)
     {
         Manager.InvenInstance.MyInventoryPanel.SetActive(false);
-        if (dragPos.x > 205 && dragPos.x < 441 && dragPos.y > 13 && dragPos.y < 245 && itemData != null)
+        if (dragPos.x < 1875 && dragPos.x > 900 && dragPos.y > 100 && dragPos.y < 1003 && itemData != null)// && !Manager.InvenInstance.IsFull)
         {
+
             DropItem.draggedItem = itemData;
             DropItem[] allDropItems = FindObjectsOfType<DropItem>();
 
@@ -110,11 +111,12 @@ public class InventorySlot : PooledObject
     {
         if (itemData == null) return;
 
-        //SlotParent slotParent = slotSideParent;
-
+        
         mySlotParent.AddItem(itemData);
         Manager.InvenInstance.RemoveSideItem(itemData);
         Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().RemoveSideItem(itemData);
+        
+        
     }
 
 }

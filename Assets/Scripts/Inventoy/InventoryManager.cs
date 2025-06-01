@@ -77,7 +77,7 @@ public class InventoryManager : MonoBehaviour
         if (item == null) return;
         if (itemList == null || itemList.Count == 0) return;
         bool removed = itemList.Remove(item);
-        Debug.Log($"RemoveItem : {item.name}, 성공 여부: {removed}");
+        Debug.Log($"RemoveItem : {item.name}, bool : {removed}");
         Sum -= item.size;
         
     }

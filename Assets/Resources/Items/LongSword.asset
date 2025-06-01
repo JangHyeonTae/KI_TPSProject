@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474f78fb38602034cbf9c0b724d5842e, type: 3}
+  m_Name: LongSword
+  m_EditorClassIdentifier: 
+  name: LongSword
+  size: 20
+  imageSprite: {fileID: 21300000, guid: bbe0741245aed4477afa4e7c45d17d1f, type: 3}
+  icon: {fileID: 0}
+  description: "\uB9E4\uC6B0 \uAE34 \uAC80\uC73C\uB85C \uACF5\uACA9 \uC18D\uB3C4\uAC00
+    \uB290\uB9AC\uC9C0\uB9CC \uD50C\uB808\uC774\uC5B4\uC758 \uACF5\uACA9\uB825\uC774
+    20 \uC0C1\uC2B9\uD55C\uB2E4.\n\uC591\uC190\uAC80\uC73C\uB85C \uD558\uB098\uC758
+    \uBB34\uAE30\uBC16\uC5D0 \uBABB\uB4E0\uB2E4"
+  model: {fileID: 2729826140449702922, guid: d10435ad4f3986f4989adfe8a4b1b0b6, type: 3}
+  dropModel: {fileID: 2729826140449702922, guid: a57f79e33d0944e48b1dc4aa0c1a05b5,
+    type: 3}
+  isAdd: 0
+  weaponOverride: {fileID: 22100000, guid: 15d6d18f53a29d14d841dc0d3985c832, type: 2}
+  value: 20
+  range: 0
+  canDouble: 0
+  isRight: 1
+  attackDelay: 0

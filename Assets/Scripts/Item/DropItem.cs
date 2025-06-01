@@ -8,7 +8,7 @@ using static UnityEditor.Progress;
 public class DropItem : MonoBehaviour
 {
     public static Item draggedItem;
-    [SerializeField]public Item item;
+    //public string itemPath;
 
     public GameObject prefab;
     [SerializeField] private float peekRange;
@@ -20,8 +20,12 @@ public class DropItem : MonoBehaviour
     public string name;
 
     private bool hasShow = false;
-
-    private void Start() => Init();
+    public Item item;
+    private void Start()
+    {
+        //item = Resources.Load<Item>(itemPath);
+        Init();
+    }
 
     private void Init()
     {
@@ -30,14 +34,18 @@ public class DropItem : MonoBehaviour
 
     private void OnEnable()
     {
-        prefab = Instantiate(item.dropModel, transform);
+        if(item != null)
+            prefab = Instantiate(item.dropModel, transform);
+
         OnDraging.AddListener(Draging);
     }
 
     private void OnDisable()
     {
         OnDraging.RemoveListener(Draging);
-        Destroy(prefab);
+
+        if(item != null)
+            Destroy(prefab);
         
     }
 

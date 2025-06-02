@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,11 +24,18 @@ public class SlotParent : MonoBehaviour
     
     public void AddSideItem(Item item)
     {
+        int index = 0;
         PooledObject obj = sideSlotPool.GetPool();
         if (obj == null) return;
         InventorySlot sideSlot = obj.GetComponent<InventorySlot>();
         slotList.Add(sideSlot);
-        sideSlot.Init(item, this);
+
+        while (slotList.Exists(slot => slot.itemData != null && slot.itemData.ID == index))
+        {
+            index++;
+        }
+        item.ID = index;
+        sideSlot.Init(item, this,index);
     }
     
     public void RemoveSideItem(Item item)

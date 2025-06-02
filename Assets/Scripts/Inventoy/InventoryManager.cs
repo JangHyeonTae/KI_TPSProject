@@ -67,19 +67,21 @@ public class InventoryManager : MonoBehaviour
     {
         if (itemList.Count < 12)
         {
+            int num = 0;
             itemList.Add(item);
             Sum += item.size;
         }
     }
 
-    public void RemoveItem(Item item)
+    public void RemoveItem(int num)
     {
-        if (item == null) return;
         if (itemList == null || itemList.Count == 0) return;
-        bool removed = itemList.Remove(item);
-        Debug.Log($"RemoveItem : {item.name}, bool : {removed}");
-        Sum -= item.size;
-        
+        int index = itemList.FindIndex(item => item.ID == num);
+
+        if (index == -1) return;
+
+        Sum = Mathf.Max(0,Sum - itemList[index].size);
+        itemList.RemoveAt(index);
     }
 
 
@@ -116,7 +118,6 @@ public class InventoryManager : MonoBehaviour
 
     public void BagGuage(int value)
     {
-        Debug.Log($"BagGuageUI : {value}");
         float bagGuage = value / (float)maxSum;
         BagGuageUI.BagGuageUI(bagGuage);
     }

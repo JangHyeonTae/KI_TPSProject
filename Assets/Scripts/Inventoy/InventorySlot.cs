@@ -24,12 +24,12 @@ public class InventorySlot : PooledObject
     private Vector3 startPos;
     private Vector3 dragPos;
 
-
     [SerializeField] private Image colorImage;
     Color prevColor;
 
-    public void Init(Item _itemData, SlotParent parent)
+    public void Init(Item _itemData, SlotParent parent,int _myIndex)
     {
+        myIndex = _myIndex;
         itemData = _itemData;
         slotSideParent = parent;
         SetSlot();
@@ -37,6 +37,7 @@ public class InventorySlot : PooledObject
 
     public void Outit()
     {
+        myIndex = -1;
         itemData = null;
     }
 
@@ -111,12 +112,9 @@ public class InventorySlot : PooledObject
     {
         if (mySlotParent == null) return;
 
-        
         mySlotParent.AddItem(itemData);
         Manager.InvenInstance.RemoveSideItem(itemData);
         Manager.InvenInstance.SideSlotParent.GetComponent<SlotParent>().RemoveSideItem(itemData);
-        
-        
     }
 
 }

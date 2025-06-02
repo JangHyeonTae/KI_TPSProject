@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -23,13 +24,20 @@ public class MySlotParent : MonoBehaviour
 
     public void AddItem(Item item)
     {
+        int index = 0;
         Manager.InvenInstance.AddItem(item);
 
         PooledObject obj = slotPool.GetPool();
         MyInventorySlot slotScript = obj.GetComponent<MyInventorySlot>();
         slotList.Add(slotScript);
-        slotScript.Init(item, this);
-        Debug.Log($"{item.name}");
+
+        while (slotList.Exists(slot => slot.itemData != null && slot.itemData.ID == index))
+        {
+            index++;
+        }
+        item.ID = index;
+        slotScript.Init(item, this,index);
+
     }
 
     public void RemoveItem(Item item)
@@ -48,9 +56,11 @@ public class MySlotParent : MonoBehaviour
         if (targetSlot != null)
         {
             targetSlot.ReturnObjectPool();
-            targetSlot.Outit();
             slotList.Remove(targetSlot);
+            Manager.InvenInstance.RemoveItem(targetSlot.itemData.ID);
+            targetSlot.Outit();
         }
+
     }
 
 }

@@ -14,7 +14,7 @@ public abstract class Item : ScriptableObject
     [TextArea]public string description;
     public GameObject model;
     public GameObject dropModel;
-
+    public int ID;
 
     //public Item(string _name, int _size, Sprite _imageSprite, Image _icon, string _description, GameObject _model, GameObject _dropModel)
     //{

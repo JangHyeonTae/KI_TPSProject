@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2164674730489426428}
   - component: {fileID: 2782742779437463803}
   - component: {fileID: 4044537671203445436}
+  - component: {fileID: -5766187139913108945}
   m_Layer: 0
   m_Name: DropLongSword
   m_TagString: Untagged
@@ -45,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21cc237bbc16cd49beb99571fea3458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: e3121c93ea131784c91fcd8baf236ad5, type: 2}
   prefab: {fileID: 0}
   peekRange: 1
   playerLayer:
@@ -55,6 +55,8 @@ MonoBehaviour:
   OnDraging:
     m_PersistentCalls:
       m_Calls: []
+  name: 
+  item: {fileID: 11400000, guid: e3121c93ea131784c91fcd8baf236ad5, type: 2}
 --- !u!65 &4044537671203445436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76,3 +78,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4, y: 0.2, z: 1}
   m_Center: {x: 0, y: 0.22, z: 0.01}
+--- !u!95 &-5766187139913108945
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798211402897631207}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8cb53980b37c9ce4190e7253e2f666f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7343267419419429230}
   - component: {fileID: 418954880984068272}
   - component: {fileID: 4037340447309977449}
+  - component: {fileID: 8690363154920436651}
   m_Layer: 0
   m_Name: DropPotion
   m_TagString: Untagged
@@ -80,6 +81,27 @@ MonoBehaviour:
       m_Calls: []
   name: 
   item: {fileID: 11400000, guid: 2f797c08f9d039747a677ee60c76c178, type: 2}
+--- !u!95 &8690363154920436651
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813438711430283613}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15be4e2c006ff9b4b8bfb1bef8eca31a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5258230768095434149
 PrefabInstance:
   m_ObjectHideFlags: 0

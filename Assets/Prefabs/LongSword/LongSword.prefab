@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: be8d76ebb9f3e2e41bc1c53c0e273044, type: 3}
       propertyPath: m_Name
-      value: Greatsword
+      value: LongSword
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: be8d76ebb9f3e2e41bc1c53c0e273044, type: 3}
       propertyPath: m_RootOrder

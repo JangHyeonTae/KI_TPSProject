@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,21 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamagable
 {
     public string name;
-    //public Weapon weapon;
-     
+    public int power;
+    public EnemySkill[] skill;
 
-    public void TakeDamage(float amount)
-    {
-        Debug.Log(amount);
-    }
+    public int MaxHp;
+
+    private int hp;
+    public int Hp { get { return hp; } set { hp = value; OnChangeHp?.Invoke(hp); } }
+    public event Action<int> OnChangeHp;
+
+    private bool isAttack;
+    public bool IsAttack { get { return isAttack; } set { isAttack = value; OnAttack?.Invoke(isAttack); } }
+    public event Action<bool> OnAttack;
+
+    private bool isTakeDamage;
+    public bool IsTakeDamage { get { return isTakeDamage; } set { isTakeDamage = value;  OnTakeDamage?.Invoke(isTakeDamage); } }
+    public event Action<bool> OnTakeDamage;
 
 }

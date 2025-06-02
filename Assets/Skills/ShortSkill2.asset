@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d464e772c6b6ab459f8a6d54b844a83, type: 3}
   m_Name: ShortSkill2
   m_EditorClassIdentifier: 
-  damage: 0
-  cool: 0
-  skillName: 
-  icon: {fileID: 0}
+  damage: 30
+  cool: 15
+  skillRange: 40
+  skillName: ShortSwordSkill2
+  icon: {fileID: 21300000, guid: f69e0acc69e53431485991ab399ba4e0, type: 3}

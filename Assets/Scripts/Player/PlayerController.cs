@@ -108,10 +108,12 @@ public class PlayerController : MonoBehaviour, IDamagable
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ActiveSkill1();
+            delay = 0;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ActiveSkill2();
+            delay = 0;
         }
     }
 
@@ -124,23 +126,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         animator.SetTrigger("Skill2");
     }
-
-    //private IEnumerator CoolTime()
-    //{
-    //    float tick = 1f / skill.cool;
-    //    float t = 0;
-    //
-    //    imgCool.fillAmount = 1;
-    //
-    //    while (imgCool.fillAmount > 0)
-    //    {
-    //        imgCool.fillAmount = Mathf.Lerp(1, 0, t);
-    //        t += (Time.deltaTime * tick);
-    //
-    //        yield return null;
-    //    }
-    //}
-
+    
     private void HandleDir()
     {
         movement.SetRotate();

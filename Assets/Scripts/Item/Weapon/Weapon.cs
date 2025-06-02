@@ -20,6 +20,8 @@ public class Weapon : Item
     public float range;
     public bool isRight;
     public float attackDelay;
+    public Skill skill1;
+    public Skill skill2;    
 
     private const string weaponName = "Weapon";
 

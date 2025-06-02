@@ -89,9 +89,22 @@ public class MyInventorySlot : PooledObject
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        PlayerFight player = FindObjectOfType<PlayerFight>();
+        PlayerController playerCon = FindObjectOfType<PlayerController>();
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("정보 표시");
+            if (itemData != null && itemData.name == "Potion")
+            {
+                itemData.Use(playerCon);
+                AddDrag(Manager.InvenInstance.MySlotParent.GetComponent<MySlotParent>());
+            }
+            else 
+            {
+                Weapon item = itemData as Weapon;
+                player.SpawnWeapon(item);
+                AddDrag(Manager.InvenInstance.MySlotParent.GetComponent<MySlotParent>());
+            }
+            
         }
     }
 

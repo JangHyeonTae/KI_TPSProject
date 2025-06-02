@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,10 +36,10 @@ public class PlayerController : MonoBehaviour, IDamagable
     void Update()
     {
         delay += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TakeDmage(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    TakeDmage(10);
+        //}
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -73,12 +74,14 @@ public class PlayerController : MonoBehaviour, IDamagable
     public void TakeDmage(int amount)
     {
         status.CurHp = Mathf.Max(0, status.CurHp - amount);
+        Debug.Log($"Damage : {status.CurHp}");
         if (status.CurHp == 0) Debug.Log("³¡");
     }
 
     public void Heal(int amount)
     {
-        status.CurHp = Mathf.Max(status.maxHp, status.CurHp + amount);
+        Debug.Log($"Heal : {status.CurHp}");
+        status.CurHp = Mathf.Min(status.maxHp, status.CurHp + amount);
     }
     
     public bool IsAttackAnim()
@@ -101,7 +104,42 @@ public class PlayerController : MonoBehaviour, IDamagable
             animator.SetTrigger("NormalAttack");
             delay = 0;
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ActiveSkill1();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ActiveSkill2();
+        }
     }
+
+    public void ActiveSkill1()
+    {
+        animator.SetTrigger("Skill1");
+    }
+
+    public void ActiveSkill2()
+    {
+        animator.SetTrigger("Skill2");
+    }
+
+    //private IEnumerator CoolTime()
+    //{
+    //    float tick = 1f / skill.cool;
+    //    float t = 0;
+    //
+    //    imgCool.fillAmount = 1;
+    //
+    //    while (imgCool.fillAmount > 0)
+    //    {
+    //        imgCool.fillAmount = Mathf.Lerp(1, 0, t);
+    //        t += (Time.deltaTime * tick);
+    //
+    //        yield return null;
+    //    }
+    //}
 
     private void HandleDir()
     {

@@ -43,6 +43,20 @@ public class PlayerFight : MonoBehaviour
         target.TakeDamage(currentWeapon.GetDamage() * status.curPower);
     }
 
+    private void Skill1Attack()
+    {
+        IDamagable target = SetTarget();
+        if (target == null) return;
+        target.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill1.damage);
+    }
+
+    private void Skill2Attack()
+    {
+        IDamagable target = SetTarget();
+        if (target == null) return;
+        target.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill2.damage);
+    }
+
     private IDamagable SetTarget()
     {
         if(target == null) return null;

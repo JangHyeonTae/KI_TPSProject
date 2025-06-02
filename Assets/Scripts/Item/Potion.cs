@@ -10,6 +10,6 @@ public class Potion : Item
 
     public override void Use(PlayerController player)
     {
-        
+        player.Heal(value);
     }
 }

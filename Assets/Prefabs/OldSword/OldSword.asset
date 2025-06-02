@@ -21,10 +21,11 @@ MonoBehaviour:
   model: {fileID: 5657927928330902999, guid: 6726d358c30e8034fb8330fd8321db08, type: 3}
   dropModel: {fileID: 6875944649499804302, guid: 990678dd272f5f849a61e232fab274dd,
     type: 3}
-  isAdd: 0
+  ID: 0
   weaponOverride: {fileID: 22100000, guid: 94bcd44982068454db467d8daeeff6fd, type: 2}
   value: 10
   range: 0
-  canDouble: 0
   isRight: 1
   attackDelay: 0
+  skill1: {fileID: 11400000, guid: 2b2ba18d3722aa04e9174f007c8aea96, type: 2}
+  skill2: {fileID: 11400000, guid: aa6c98c3503af02489e5e77c48776172, type: 2}

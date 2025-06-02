@@ -17,3 +17,6 @@ MonoBehaviour:
   skillRange: 40
   skillName: ShortSwordSkill1
   icon: {fileID: 21300000, guid: 45a1449d1e8b54e27bc15a3cb3c44641, type: 3}
+  skillParticle: {fileID: 2695938950007877682, guid: 56cd45f92f23796489f7cd4d407ac05f,
+    type: 3}
+  particleDelay: 0

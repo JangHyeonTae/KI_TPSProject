@@ -17,3 +17,6 @@ MonoBehaviour:
   skillRange: 30
   skillName: LongSwordSkill2
   icon: {fileID: 21300000, guid: d4c573ae59c4e4242ade654d9f6a8986, type: 3}
+  skillParticle: {fileID: 3050942199546623091, guid: 46660d7c20f9b264084e19daa4b93b1e,
+    type: 3}
+  particleDelay: 0

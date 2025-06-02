@@ -17,3 +17,6 @@ MonoBehaviour:
   skillRange: 60
   skillName: OldSkill2
   icon: {fileID: 21300000, guid: 917150ef6c0994b4f98a8ae8fa384a86, type: 3}
+  skillParticle: {fileID: 1623280093043294, guid: 592d06350487a0942a84222a68acfd27,
+    type: 3}
+  particleDelay: 0

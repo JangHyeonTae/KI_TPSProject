@@ -8,7 +8,8 @@ public class Skill : ScriptableObject
 {
     public int damage;
     public float cool;
-
+    public float skillRange;
     public string skillName;
     public Sprite icon;
+
 }

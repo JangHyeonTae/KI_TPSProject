@@ -11,6 +11,7 @@ public class PlayerFight : MonoBehaviour
     private Weapon currentWeapon;
 
     GameObject target;
+    public LayerMask targetLayer;
     private GameObject instWeapon;
 
     private void Start()
@@ -36,25 +37,88 @@ public class PlayerFight : MonoBehaviour
         currentWeapon.Spawn(handTransform,animator);
     }
 
-    private void Attack()
+    //public void Attack()
+    //{
+    //    IDamagable target = SetTarget();
+    //    if (target == null) return;
+    //    target.TakeDamage(currentWeapon.GetDamage() * status.curPower);
+    //}
+    public void Attack()
     {
-        IDamagable target = SetTarget();
-        if (target == null) return;
-        target.TakeDamage(currentWeapon.GetDamage() * status.curPower);
-    }
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetRange(), targetLayer);
+    
+        foreach (Collider target in _colliders)
+        {
+            Vector3 targetPos = target.transform.position;
+            targetPos.y = 0;
+            Vector3 attackPos = transform.position;
+            attackPos.y = 0;
+    
+            Vector3 targetDir = (targetPos - attackPos).normalized;
+    
+            if (Vector3.Angle(transform.forward, targetDir) > currentWeapon.GetRange() * 0.5f)
+                continue;
 
-    private void Skill1Attack()
-    {
-        IDamagable target = SetTarget();
-        if (target == null) return;
-        target.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill1.damage);
+            
+            IDamagable damageable = target.GetComponent<IDamagable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(currentWeapon.GetDamage() * status.curPower);
+            }
+    
+        }
     }
-
-    private void Skill2Attack()
+    public void Skill1Attack()
     {
-        IDamagable target = SetTarget();
-        if (target == null) return;
-        target.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill2.damage);
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetSkill1Range(), targetLayer);
+
+        foreach (Collider target in _colliders)
+        {
+            Vector3 targetPos = target.transform.position;
+            targetPos.y = 0;
+            Vector3 attackPos = transform.position;
+            attackPos.y = 0;
+
+            Vector3 targetDir = (targetPos - attackPos).normalized;
+
+            if (Vector3.Angle(transform.forward, targetDir) > currentWeapon.GetSkill1Range() * 0.5f)
+                continue;
+
+
+            IDamagable damageable = target.GetComponent<IDamagable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill1.damage);
+            }
+
+        }
+        
+    }
+    public void Skill2Attack()
+    {
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetSkill2Range(), targetLayer);
+
+        foreach (Collider target in _colliders)
+        {
+            Vector3 targetPos = target.transform.position;
+            targetPos.y = 0;
+            Vector3 attackPos = transform.position;
+            attackPos.y = 0;
+
+            Vector3 targetDir = (targetPos - attackPos).normalized;
+
+            if (Vector3.Angle(transform.forward, targetDir) > currentWeapon.GetSkill2Range() * 0.5f)
+                continue;
+
+
+            IDamagable damageable = target.GetComponent<IDamagable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill2.damage);
+            }
+
+        }
+        
     }
 
     private IDamagable SetTarget()
@@ -71,4 +135,6 @@ public class PlayerFight : MonoBehaviour
             player.TakeDmage(0);
         }
     }
+
+    
 }

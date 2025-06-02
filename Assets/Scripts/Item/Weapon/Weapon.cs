@@ -69,4 +69,14 @@ public class Weapon : Item
         return range;
     }
 
+    public float GetSkill1Range()
+    {
+        return skill1.skillRange;
+    }
+
+    public float GetSkill2Range()
+    {
+        return skill2.skillRange;
+    }
+
 }

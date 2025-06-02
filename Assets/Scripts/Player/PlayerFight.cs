@@ -63,9 +63,14 @@ public class PlayerFight : MonoBehaviour
             IDamagable damageable = target.GetComponent<IDamagable>();
             if (damageable != null)
             {
+                GameObject obj = Instantiate(currentWeapon.ParticleAttack(), target.transform.position + Vector3.up * 1f, Quaternion.identity);
                 damageable.TakeDamage(currentWeapon.GetDamage() * status.curPower);
+                if (obj != null)
+                {
+                    Destroy(obj, 2f);
+                }
             }
-    
+
         }
     }
     public void Skill1Attack()
@@ -88,7 +93,13 @@ public class PlayerFight : MonoBehaviour
             IDamagable damageable = target.GetComponent<IDamagable>();
             if (damageable != null)
             {
+                GameObject obj = Instantiate(currentWeapon.ParticleSkill1(), target.transform.position + Vector3.up * 1f, Quaternion.identity);
                 damageable.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill1.damage);
+                if (obj != null)
+                {
+                    Destroy(obj, 2f);
+                }
+
             }
 
         }
@@ -114,7 +125,13 @@ public class PlayerFight : MonoBehaviour
             IDamagable damageable = target.GetComponent<IDamagable>();
             if (damageable != null)
             {
+                GameObject obj = Instantiate(currentWeapon.ParticleSkill2(), target.transform.position + Vector3.up * 1f, Quaternion.identity);
                 damageable.TakeDamage(currentWeapon.GetDamage() * status.curPower * currentWeapon.skill2.damage);
+                if (obj != null)
+                {
+                    Destroy(obj, 2f);
+                }
+
             }
 
         }
@@ -132,7 +149,7 @@ public class PlayerFight : MonoBehaviour
         PlayerController player = GetComponent<PlayerController>();
         if (player.IsAttackAnim())
         {
-            player.TakeDmage(0);
+            player.TakeDamage(0);
         }
     }
 

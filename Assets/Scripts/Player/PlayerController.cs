@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour, IDamagable
     private PlayerFight playerFight;
     //public Weapon weapon;
 
+    public GameObject bloodParticle;
+
     public float attackDelay = 1.6f;
     public float delay = 0;
     private bool attacking;
@@ -71,9 +73,10 @@ public class PlayerController : MonoBehaviour, IDamagable
     
     
 
-    public void TakeDmage(int amount)
+    public void TakeDamage(float amount)
     {
-        status.CurHp = Mathf.Max(0, status.CurHp - amount);
+        Instantiate(bloodParticle, transform.position, Quaternion.identity);
+        status.CurHp = Mathf.Max(0, status.CurHp - (int)amount);
         Debug.Log($"Damage : {status.CurHp}");
         if (status.CurHp == 0) Debug.Log("³¡");
     }

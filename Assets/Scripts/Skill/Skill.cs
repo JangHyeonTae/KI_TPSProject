@@ -11,5 +11,6 @@ public class Skill : ScriptableObject
     public float skillRange;
     public string skillName;
     public Sprite icon;
-
+    public GameObject skillParticle;
+    public float particleDelay;
 }

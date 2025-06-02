@@ -8,7 +8,7 @@ public class NormalEnemy : Enemy, IDamagable
     public Item[] _item;
     public GameObject drop;
 
-    Vector3 objPos;
+    public Vector3 objPos;
     private void Start()
     {
         Hp = MaxHp;
@@ -27,26 +27,17 @@ public class NormalEnemy : Enemy, IDamagable
 
     public void Die()
     {
-        int rand = UnityEngine.Random.Range(0, 3);
-        if (rand == 0)
+        int rand = UnityEngine.Random.Range(0, _item.Length);
+        GameObject dropObj = Instantiate(drop, transform.position, Quaternion.identity);
+
+        DropItem dropItem = dropObj.GetComponent<DropItem>();
+        if (dropItem != null)
         {
-            drop.GetComponent<DropItem>().item = _item[0];
-            Instantiate(drop,objPos,Quaternion.identity);
+            dropItem.item = _item[rand];
         }
-        else if (rand == 1)
+        else
         {
-            drop.GetComponent<DropItem>().item = _item[1];
-            Instantiate(drop, objPos, Quaternion.identity);
-        }
-        else if (rand == 2)
-        {
-            drop.GetComponent<DropItem>().item = _item[2];
-            Instantiate(drop, objPos, Quaternion.identity);
-        }
-        else if (rand == 3)
-        {
-            drop.GetComponent<DropItem>().item = _item[3];
-            Instantiate(drop, objPos, Quaternion.identity);
+            Debug.Log($"null : {dropItem.item}");
         }
         Destroy(gameObject);
     }

@@ -21,7 +21,9 @@ public class Weapon : Item
     public bool isRight;
     public float attackDelay;
     public Skill skill1;
-    public Skill skill2;    
+    public Skill skill2;
+
+    public GameObject weaponParticle;
 
     private const string weaponName = "Weapon";
 
@@ -77,6 +79,21 @@ public class Weapon : Item
     public float GetSkill2Range()
     {
         return skill2.skillRange;
+    }
+
+    public GameObject ParticleAttack()
+    {
+        return weaponParticle;
+    }
+
+    public GameObject ParticleSkill1()
+    {
+        return skill1.skillParticle;
+    }
+
+    public GameObject ParticleSkill2()
+    {
+        return skill2.skillParticle;
     }
 
 }

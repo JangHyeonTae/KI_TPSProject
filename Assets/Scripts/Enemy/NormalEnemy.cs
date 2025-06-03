@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NormalEnemy : Enemy, IDamagable
 {
-
     public Item[] _item;
     public GameObject drop;
 
@@ -27,17 +26,26 @@ public class NormalEnemy : Enemy, IDamagable
 
     public void Die()
     {
-        int rand = UnityEngine.Random.Range(0, _item.Length);
-        GameObject dropObj = Instantiate(drop, transform.position, Quaternion.identity);
-
-        DropItem dropItem = dropObj.GetComponent<DropItem>();
-        if (dropItem != null)
+        int rand = Random.Range(0, 3);
+        if (rand == 0)
         {
-            dropItem.item = _item[rand];
+            drop.GetComponent<DropItem>().item = _item[0];
+            Instantiate(drop, objPos, Quaternion.identity);
         }
-        else
+        else if (rand == 1)
         {
-            Debug.Log($"null : {dropItem.item}");
+            drop.GetComponent<DropItem>().item = _item[1];
+            Instantiate(drop, objPos, Quaternion.identity);
+        }
+        else if (rand == 2)
+        {
+            drop.GetComponent<DropItem>().item = _item[2];
+            Instantiate(drop, objPos, Quaternion.identity);
+        }
+        else if (rand == 3)
+        {
+            drop.GetComponent<DropItem>().item = _item[3];
+            Instantiate(drop, objPos, Quaternion.identity);
         }
         Destroy(gameObject);
     }

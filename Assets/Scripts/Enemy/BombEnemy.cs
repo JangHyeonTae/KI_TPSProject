@@ -34,40 +34,41 @@ public class BombEnemy : Enemy, IDamagable
     public void EnemyAttack(float amount)
     {
         IDamagable target = SetTarget();
-        float distance = Vector3.Distance(transform.position, targetTransform.position);
         if (target == null) return;
 
-        if (distance < attackRange)
+        GameObject obj = Instantiate(bombParticle,transform.position + Vector3.up * 1.5f,Quaternion.identity);
+        target.TakeDamage(amount);
+        if (obj != null)
         {
-            GameObject obj = Instantiate(bombParticle,transform.position + Vector3.up * 1.5f,Quaternion.identity);
-            target.TakeDamage(amount);
-            if (obj != null)
-            {
-                Destroy(obj);
-            }
-        }
-        else
-        {
-            Debug.Log("OutLine");
-            return;
+            Destroy(obj);
         }
     }
 
     public IDamagable SetTarget()
     {
-        if (targetTransform == null) return null;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
 
-        return targetTransform.GetComponent<IDamagable>();
-    }
-
-    public bool TargetIn()
-    {
-        if (Physics.OverlapSphere(transform.position, attackRange, targetLayer).Length > 0)
+        foreach (Collider target in colliders)
         {
-            return true;
+            IDamagable setTarget = target.GetComponent<IDamagable>();
+
+            return setTarget;
         }
-        return false;
+
+        return null;
+        //if (targetTransform == null) return null;
+        //
+        //return targetTransform.GetComponent<IDamagable>();
     }
+
+    //public bool TargetIn()
+    //{
+    //    if (Physics.OverlapSphere(transform.position, attackRange, targetLayer).Length > 0)
+    //    {
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
     public void OnDrawGizmos()
     {

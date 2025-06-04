@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UI_Start : BaseUI
 {
-    public void LoadNexScene()
+    public void LoadStartScene()
     {
-        Manager.SceneManagers.SceneLoad();
+        Manager.SceneManagers.LoadNextScene(1);
     }
 }

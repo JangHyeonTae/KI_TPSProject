@@ -13,6 +13,9 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private int cellSize;
     private GameObject parentObject;
     private GameObject boxObject;
+    [SerializeField] private GameObject startPos;
+    [SerializeField] private GameObject endPos;
+    
     //gird cell들을 2차원 배열로 생성
     private MazeCell[,] mazeGrid;
 
@@ -39,6 +42,9 @@ public class MazeGenerator : MonoBehaviour
                 
             }
         }
+        Instantiate(startPos, Vector3.zero,Quaternion.identity, parentObject.transform);
+        Instantiate(endPos,new Vector3(57,0,57),Quaternion.identity,parentObject.transform);
+        Instantiate(endPos, new Vector3(0, 0, 57), Quaternion.identity, parentObject.transform);
         PlaceRandomBoxes();
         GenerateMaze(null, mazeGrid[0,0]);
     }

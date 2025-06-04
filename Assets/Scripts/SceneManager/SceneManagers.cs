@@ -22,13 +22,9 @@ public class SceneManagers : MonoBehaviour
         }
     }
 
-    public void SceneLoad()
+    public void LoadNextScene(int curScene)
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(curScene);
     }
 
-    public void FinishScene()
-    {
-        //SceneManager.LoadScene(2);
-    }
 }

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float mouseSensitivity;
-
+    [SerializeField] private Transform cameraHolder;
     public Rigidbody rigid;
     private PlayerStatus status;
 
@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         rotateMouse.y = Mathf.Clamp(rotateMouse.y + mouse.y, minPitch, maxPitch);
 
         transform.rotation = Quaternion.Euler(0, rotateMouse.x, 0);
-
+        if (cameraHolder != null)
+            cameraHolder.localRotation = Quaternion.Euler(rotateMouse.y, 0, 0);
     }
 }

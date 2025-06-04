@@ -9,7 +9,7 @@ public class MazeHealth : MonoBehaviour, IDamagable
 
     private void Start()
     {
-        hp = Random.Range(1, 3) * 1000;
+        hp = Random.Range(6, 10) * 100;
     }
     public void TakeDamage(float amount)
     {

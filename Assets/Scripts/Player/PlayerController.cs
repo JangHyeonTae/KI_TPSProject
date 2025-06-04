@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamagable
 { 
-    public bool isCanMove = true;
+    public bool isCanMove;
 
     private Animator animator;
     private PlayerStatus status;
@@ -44,12 +44,15 @@ public class PlayerController : MonoBehaviour, IDamagable
     void Update()
     {
         delay += Time.deltaTime;
-
+        isCanMove = IsAttackAnim();
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (Manager.InvenInstance.canMove)
             {
-                isCanMove = false;
+                if (isCanMove == true)
+                {
+                    isCanMove = false;
+                }
                 status.IsAttack = false;
                 status.IsMove = false;
                 movement.rigid.angularVelocity = Vector3.zero;
@@ -109,7 +112,6 @@ public class PlayerController : MonoBehaviour, IDamagable
              attacking = true;
         else
             attacking = false;
-
         return attacking;
     }
 
@@ -122,18 +124,29 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             animator.SetTrigger("NormalAttack");
             delay = 0;
+            Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ActiveSkill1();
             delay = 0;
+            Stop();
+
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ActiveSkill2();
             delay = 0;
+            Stop();
         }
+    }
+
+    private void Stop()
+    {
+        isCanMove = false;
+        movement.rigid.angularVelocity = Vector3.zero;
+        movement.rigid.velocity = Vector3.zero;
     }
 
     public void ActiveSkill1()

@@ -8,15 +8,15 @@ public class EnemyHpGuage : MonoBehaviour
     [SerializeField] private Image _image;
     private Transform cameraTransform;
 
-    private void Awake() => Init();
-
-
-    private void LateUpdate() => SetUIVector(cameraTransform.forward);
-
-    private void Init()
-    {
-        cameraTransform = Camera.main.transform;
-    }
+    //private void Awake() => Init();
+    //
+    //
+    //private void LateUpdate() => SetUIVector(cameraTransform.forward);
+    //
+    //private void Init()
+    //{
+    //    cameraTransform = Camera.main.transform;
+    //}
 
 
     public void SetHpFillAmount(float value)
@@ -24,8 +24,8 @@ public class EnemyHpGuage : MonoBehaviour
         _image.fillAmount = value;
     }
 
-    public void SetUIVector(Vector3 target)
-    {
-        transform.forward = target;
-    }
+    //public void SetUIVector(Vector3 target)
+    //{
+    //    transform.forward = target;
+    //}
 }

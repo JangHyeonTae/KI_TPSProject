@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d464e772c6b6ab459f8a6d54b844a83, type: 3}
   m_Name: LongSkill2
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 20
   cool: 10
   skillRange: 30
   skillName: LongSwordSkill2
@@ -20,3 +20,4 @@ MonoBehaviour:
   skillParticle: {fileID: 3050942199546623091, guid: 46660d7c20f9b264084e19daa4b93b1e,
     type: 3}
   particleDelay: 0
+  skillForwardRange: 2

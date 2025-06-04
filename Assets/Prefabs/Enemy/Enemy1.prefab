@@ -114,9 +114,10 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackRange: 80
+  attackRange: 3
   animator: {fileID: 2149791768863006702}
-  targetAttackRange: 6
+  targetAttackRange: 3
+  targetAttackRadius: 100
   hpBar: {fileID: 2119813551835972232}
   _item:
   - {fileID: 11400000, guid: 2f797c08f9d039747a677ee60c76c178, type: 2}

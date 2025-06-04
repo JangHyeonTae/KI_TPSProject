@@ -56,23 +56,7 @@ public class BombEnemy : Enemy, IDamagable
         }
 
         return null;
-        //if (targetTransform == null) return null;
-        //
-        //return targetTransform.GetComponent<IDamagable>();
     }
 
-    //public bool TargetIn()
-    //{
-    //    if (Physics.OverlapSphere(transform.position, attackRange, targetLayer).Length > 0)
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
 }

@@ -16,7 +16,6 @@ public class NormalEnemy : Enemy, IDamagable
 
     public void TakeDamage(float amount)
     {
-        Debug.Log(amount);
         Hp = Mathf.Max(0, Hp - (int)amount);
         if (Hp == 0)
         {
@@ -50,8 +49,4 @@ public class NormalEnemy : Enemy, IDamagable
         Destroy(gameObject);
     }
 
-    public void EnemyAttack(float amount)
-    {
-        Debug.Log($"Enemy Attack : {amount}");
-    }
 }

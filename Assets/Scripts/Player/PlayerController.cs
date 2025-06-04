@@ -21,7 +21,11 @@ public class PlayerController : MonoBehaviour, IDamagable
     public float delay = 0;
     private bool attacking;
 
-    public HpGuageUI hpBar; 
+    public Transform groundCheck;
+    private float groundDistance = 0.05f;
+    public HpGuageUI hpBar;
+
+    public LayerMask groundLayer;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -40,10 +44,6 @@ public class PlayerController : MonoBehaviour, IDamagable
     void Update()
     {
         delay += Time.deltaTime;
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    TakeDmage(10);
-        //}
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -74,8 +74,10 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void FixedUpdate()
     {
+        movement.isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
         HandlePlayerController();
     }
+
     
     
 
@@ -83,7 +85,6 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         Instantiate(bloodParticle, transform.position, Quaternion.identity);
         status.CurHp = Mathf.Max(0, status.CurHp - (int)amount);
-        Debug.Log($"Damage : {status.CurHp}");
         if (status.CurHp == 0)
         {
             PlayerDie();
@@ -99,7 +100,6 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void Heal(int amount)
     {
-        Debug.Log($"Heal : {status.CurHp}");
         status.CurHp = Mathf.Min(status.maxHp, status.CurHp + amount);
     }
     

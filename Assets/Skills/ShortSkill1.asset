@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d464e772c6b6ab459f8a6d54b844a83, type: 3}
   m_Name: ShortSkill1
   m_EditorClassIdentifier: 
-  damage: 8
+  damage: 7
   cool: 3
   skillRange: 40
   skillName: ShortSwordSkill1
@@ -20,3 +20,4 @@ MonoBehaviour:
   skillParticle: {fileID: 2695938950007877682, guid: 56cd45f92f23796489f7cd4d407ac05f,
     type: 3}
   particleDelay: 0
+  skillForwardRange: 2

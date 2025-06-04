@@ -23,11 +23,12 @@ MonoBehaviour:
   model: {fileID: 2729826140449702922, guid: d10435ad4f3986f4989adfe8a4b1b0b6, type: 3}
   dropModel: {fileID: 2729826140449702922, guid: a57f79e33d0944e48b1dc4aa0c1a05b5,
     type: 3}
-  ID: 0
+  ID: 2
   weaponOverride: {fileID: 22100000, guid: 15d6d18f53a29d14d841dc0d3985c832, type: 2}
   value: 5
-  range: 5
+  range: 30
   isRight: 1
+  attackRange: 3
   attackDelay: 2
   skill1: {fileID: 11400000, guid: f99c59e492392f4449edc2b6caa7de25, type: 2}
   skill2: {fileID: 11400000, guid: 19af3c10020561942adf345f3c4241b6, type: 2}

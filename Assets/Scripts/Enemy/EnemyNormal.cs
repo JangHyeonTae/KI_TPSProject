@@ -8,11 +8,12 @@ public class EnemyNormal : Enemy, IDamagable
     //private bool CanMove = false;
 
     [SerializeField] private Transform targetTransform;
-    [SerializeField] private float targetRange;
+    [SerializeField] private float targetRange; // 따라가는 범위
     [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private float attackRange;
+    [SerializeField] private float attackRange; //공격 애니메이션 시작범위
     [SerializeField] Animator animator;
-    [SerializeField] private float targetAttackRange;
+    [SerializeField] private float targetAttackRange; //공격 범위
+    [SerializeField] private float targetAttackRadius; // 공격 각도
     public EnemyHpGuage hpBar;
     public Item[] _item;
     public GameObject drop;
@@ -45,7 +46,6 @@ public class EnemyNormal : Enemy, IDamagable
 
     private void EnemyMoveHandler()
     {
-        //if (!CanMove) return;
 
         EnemyMove();
     }
@@ -132,7 +132,7 @@ public class EnemyNormal : Enemy, IDamagable
 
             Vector3 targetDir = (targetPos - attackPos).normalized;
 
-            if (Vector3.Angle(transform.forward, targetDir) > targetAttackRange * 0.5f)
+            if (Vector3.Angle(transform.forward, targetDir) > targetAttackRadius * 0.5f)
                 continue;
 
 
@@ -155,11 +155,6 @@ public class EnemyNormal : Enemy, IDamagable
         return false;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, targetRange);
-    }
 
     private void SubScribeEvents()
     {

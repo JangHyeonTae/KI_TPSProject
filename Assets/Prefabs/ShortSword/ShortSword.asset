@@ -23,9 +23,10 @@ MonoBehaviour:
     type: 3}
   ID: 0
   weaponOverride: {fileID: 22100000, guid: 28149e9067ebbd546b470913fc80e241, type: 2}
-  value: 10
-  range: 50
+  value: 6
+  range: 30
   isRight: 1
+  attackRange: 2
   attackDelay: 0
   skill1: {fileID: 11400000, guid: 7a0b23a614f31d842b45bd2ce4b15164, type: 2}
   skill2: {fileID: 11400000, guid: 701871b8a0d92964dab96561ee3bcb7c, type: 2}

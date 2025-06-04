@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rigid;
     private PlayerStatus status;
 
+    public bool isGrounded;
 
     Vector2 rotateMouse;
     private void Awake()
@@ -70,7 +71,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(float force)
     {
-        rigid.AddForce(Vector3.up * force,ForceMode.Impulse);
+        if (isGrounded)
+        {
+            rigid.AddForce(Vector3.up * force, ForceMode.Impulse);
+        }
     }
 
     public void SetRotate()

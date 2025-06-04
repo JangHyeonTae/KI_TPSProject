@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +25,6 @@ public class SlotParent : MonoBehaviour
     {
         int index = 0;
         PooledObject obj = sideSlotPool.GetPool();
-        Debug.Log($"{obj.name}");
         if (obj == null) return;
         InventorySlot sideSlot = obj.GetComponent<InventorySlot>();
         slotList.Add(sideSlot);

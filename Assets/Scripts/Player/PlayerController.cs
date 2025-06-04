@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void FixedUpdate()
     {
+        if (!isCanMove) return;
         HandlePlayerController();
     }
     

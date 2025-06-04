@@ -24,7 +24,7 @@ public class SceneManagers : MonoBehaviour
 
     public void LoadNextScene(int curScene)
     {
-        SceneManager.LoadScene(curScene);
+        SceneManager.LoadScene(curScene + 1);
     }
 
 }

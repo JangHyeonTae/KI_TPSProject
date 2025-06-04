@@ -13,13 +13,23 @@ public class EnemyNormal : Enemy, IDamagable
     [SerializeField] private float attackRange;
     [SerializeField] Animator animator;
     [SerializeField] private float targetAttackRange;
-    public HpGuageUI hpBar;
+    public EnemyHpGuage hpBar;
     public Item[] _item;
     public GameObject drop;
 
     public Vector3 objPos;
 
     private NavMeshAgent navMeshAgent;
+
+    private void OnEnable()
+    {
+        SubScribeEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnSubScribeEvents();
+    }
 
     private void Start()
     {
@@ -70,6 +80,11 @@ public class EnemyNormal : Enemy, IDamagable
     public void TakeDamage(float amount)
     {
         Debug.Log(amount);
+        if (amount > 1)
+        {
+            animator.SetTrigger("TakeDamage");
+        }
+        
         Hp = Mathf.Max(0, Hp - (int)amount);
         if (Hp == 0)
         {
@@ -79,31 +94,32 @@ public class EnemyNormal : Enemy, IDamagable
 
     public void Die()
     {
+        IsDead = true;
         int rand = Random.Range(0, 3);
         if (rand == 0)
         {
             drop.GetComponent<DropItem>().item = _item[0];
-            Instantiate(drop, objPos, Quaternion.identity);
+            Instantiate(drop, DeadPos(), Quaternion.identity);
         }
         else if (rand == 1)
         {
             drop.GetComponent<DropItem>().item = _item[1];
-            Instantiate(drop, objPos, Quaternion.identity);
+            Instantiate(drop, DeadPos(), Quaternion.identity);
         }
         else if (rand == 2)
         {
             drop.GetComponent<DropItem>().item = _item[2];
-            Instantiate(drop, objPos, Quaternion.identity);
+            Instantiate(drop, DeadPos(), Quaternion.identity);
         }
         else if (rand == 3)
         {
             drop.GetComponent<DropItem>().item = _item[3];
-            Instantiate(drop, objPos, Quaternion.identity);
+            Instantiate(drop, DeadPos(), Quaternion.identity);
         }
-        Destroy(gameObject);
+        Destroy(gameObject,1.5f);
     }
 
-    public void EnemyAttack(float amount)
+    public void EnemyAttack()
     {
         Collider[] _colliders = Physics.OverlapSphere(transform.position, targetAttackRange, targetLayer);
 
@@ -166,6 +182,11 @@ public class EnemyNormal : Enemy, IDamagable
     private void SetHpGuage(int value)
     {
         float hp = value / (float)MaxHp;
-        hpBar.HPGuageUI(hp);
+        hpBar.SetHpFillAmount(hp);
+    }
+
+    public Vector3 DeadPos()
+    {
+        return transform.position;
     }
 }

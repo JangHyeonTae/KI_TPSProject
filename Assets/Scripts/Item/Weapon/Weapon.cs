@@ -19,6 +19,7 @@ public class Weapon : Item
     public int value;
     public float range;
     public bool isRight;
+    public float attackRange;
     public float attackDelay;
     public Skill skill1;
     public Skill skill2;
@@ -75,10 +76,18 @@ public class Weapon : Item
     {
         return skill1.skillRange;
     }
+    public float GetSkill1ForwardRange()
+    {
+        return skill1.skillForwardRange;
+    }
 
     public float GetSkill2Range()
     {
         return skill2.skillRange;
+    }
+    public float GetSkill2ForwardRange()
+    {
+        return skill2.skillForwardRange;
     }
 
     public GameObject ParticleAttack()

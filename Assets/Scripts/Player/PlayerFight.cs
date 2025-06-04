@@ -45,7 +45,7 @@ public class PlayerFight : MonoBehaviour
     //}
     public void Attack()
     {
-        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetRange(), targetLayer);
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.attackRange, targetLayer);
     
         foreach (Collider target in _colliders)
         {
@@ -75,7 +75,7 @@ public class PlayerFight : MonoBehaviour
     }
     public void Skill1Attack()
     {
-        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetSkill1Range(), targetLayer);
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetSkill1ForwardRange(), targetLayer);
 
         foreach (Collider target in _colliders)
         {
@@ -107,7 +107,7 @@ public class PlayerFight : MonoBehaviour
     }
     public void Skill2Attack()
     {
-        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetSkill2Range(), targetLayer);
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, currentWeapon.GetSkill2ForwardRange(), targetLayer);
 
         foreach (Collider target in _colliders)
         {

@@ -24,6 +24,9 @@ public class SceneManagers : MonoBehaviour
 
     public void LoadNextScene(int curScene)
     {
+        if (InventoryManager.InvenInstance != null)
+            Destroy(InventoryManager.InvenInstance.gameObject);
+
         SceneManager.LoadScene(curScene + 1);
     }
 

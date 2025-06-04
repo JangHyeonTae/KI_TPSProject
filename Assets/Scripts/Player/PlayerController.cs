@@ -32,8 +32,10 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Start()
     {
-        //else if(!weapon.isRight && weapon.canDouble)
-        //    instWeapon = Instantiate(weapon.model, leftWeaponSpawn);
+        if (Manager.InvenInstance != null && Manager.InvenInstance.InventoryCanvas != null)
+        {
+            Manager.InvenInstance.InventoryCanvas.SetActive(false);
+        }
     }
     void Update()
     {
@@ -48,6 +50,10 @@ public class PlayerController : MonoBehaviour, IDamagable
             if (Manager.InvenInstance.canMove)
             {
                 isCanMove = false;
+                status.IsAttack = false;
+                status.IsMove = false;
+                movement.rigid.angularVelocity = Vector3.zero;
+                movement.rigid.velocity = Vector3.zero;
             }
             else
             {
@@ -68,7 +74,6 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void FixedUpdate()
     {
-        if (!isCanMove) return;
         HandlePlayerController();
     }
     
@@ -79,7 +84,17 @@ public class PlayerController : MonoBehaviour, IDamagable
         Instantiate(bloodParticle, transform.position, Quaternion.identity);
         status.CurHp = Mathf.Max(0, status.CurHp - (int)amount);
         Debug.Log($"Damage : {status.CurHp}");
-        if (status.CurHp == 0) Debug.Log("³¡");
+        if (status.CurHp == 0)
+        {
+            PlayerDie();
+        }
+    }
+
+    private void PlayerDie()
+    {
+        isCanMove = false;
+        animator.SetTrigger("IsDead");
+        Destroy(gameObject, 2f);
     }
 
     public void Heal(int amount)
@@ -133,6 +148,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     
     private void HandleDir()
     {
+        if (!isCanMove) return;
         movement.SetRotate();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -184,6 +200,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     }
 
     private void SetMoveAnim(bool value) => animator.SetBool("IsMove",value);
+    
     private void SetHpGuageUI(int value)
     {
         float hp = value / (float)status.maxHp;

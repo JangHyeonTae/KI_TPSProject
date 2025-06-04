@@ -13,6 +13,7 @@ public class MazeHealth : MonoBehaviour, IDamagable
     }
     public void TakeDamage(float amount)
     {
+        Debug.Log(amount);
         hp = Mathf.Max(0, hp - (int)amount);
         if (hp ==0)
         {

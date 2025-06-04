@@ -41,4 +41,7 @@ public class PlayerStatus : MonoBehaviour
     public bool IsTakeDamage { get { return isTakeDamage; } set { isTakeDamage = value; OnTakeDamage?.Invoke(isTakeDamage); } }
     public event Action<bool> OnTakeDamage;
 
+    //private bool isDead;
+    //public bool IsDead { get { return isDead; } set { isDead = value; OnDead?.Invoke(isDead); } }
+    //public event Action<bool> OnDead;
 }

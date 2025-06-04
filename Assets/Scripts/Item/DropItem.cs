@@ -55,6 +55,7 @@ public class DropItem : MonoBehaviour
         {
             Debug.Log($"Destroy : {gameObject.name}, {prefab.name}, {item.name}");
             OnDraging?.Invoke(false);
+
             //PooledObject의 ReturnObjectPool이 호출되기 전에 Destroy되지 않아야됨
             StartCoroutine(DestroyAfterFrame());
         }

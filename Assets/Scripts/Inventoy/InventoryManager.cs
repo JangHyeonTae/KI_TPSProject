@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 public class InventoryManager : MonoBehaviour
@@ -21,7 +22,7 @@ public class InventoryManager : MonoBehaviour
     public List<Item> itemList = new List<Item>();
     public List<Item> sideItemList = new List<Item>();
 
-    [SerializeField] private GameObject InventoryCanvas;
+    public GameObject InventoryCanvas;
     public GameObject MySlotParent;
     public GameObject SideSlotParent;
     public GameObject MyInventoryPanel;
@@ -62,6 +63,7 @@ public class InventoryManager : MonoBehaviour
         Sum = 0;
         maxSum = 100;
     }
+
 
     public void AddItem(Item item)
     {

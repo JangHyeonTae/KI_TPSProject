@@ -101,6 +101,7 @@ Transform:
   - {fileID: 5148688767997482379}
   - {fileID: 1612456992796796636}
   - {fileID: 8801804761401459031}
+  - {fileID: 4548680353348864622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 82.437, z: 0}
 --- !u!136 &8667135478811077902
@@ -169,6 +170,7 @@ MonoBehaviour:
   minPitch: -30
   maxPitch: 30
   mouseSensitivity: 5
+  rigid: {fileID: 0}
 --- !u!114 &1920441456936829141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c4d68e87b94a64889eb25ab2ceb070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCanMove: 0
+  isCanMove: 1
+  bloodParticle: {fileID: 2102239140665623742, guid: fc6222d850acca4499e1569549b03ddb,
+    type: 3}
   attackDelay: 2
   delay: 2
   hpBar: {fileID: 5208532572354248221}
@@ -239,10 +243,93 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightWeaponSpawn: {fileID: 7464190537398369425}
   leftWeaponSpawn: {fileID: 7942769988763593095}
-  weapon: {fileID: 11400000, guid: b50c52df3e1a30043b62dc2f40b0b274, type: 2}
+  weapon: {fileID: 11400000, guid: e3121c93ea131784c91fcd8baf236ad5, type: 2}
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!1 &8289659262498634234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4548680353348864622}
+  - component: {fileID: 6291148968257457053}
+  - component: {fileID: 2618321098166333684}
+  m_Layer: 7
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4548680353348864622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289659262498634234}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.000000060586, y: 7.01, z: 0.00000012117}
+  m_LocalScale: {x: 2.0165, y: 0.1520441, z: 2.0165}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3070947449934980458}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6291148968257457053
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289659262498634234}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2618321098166333684
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289659262498634234}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 36590c0962dbe4c47800010cf1b24455, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &2169116977632929872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -387,6 +474,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3233527900620147777, guid: bcfca94a755fad440ba81c16566b17c5,
+        type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 3070947449934980458}
+    - target: {fileID: 3233527900620147777, guid: bcfca94a755fad440ba81c16566b17c5,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6763968191691997087, guid: bcfca94a755fad440ba81c16566b17c5,
         type: 3}
       propertyPath: m_Name
@@ -395,8 +492,48 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1923812557875687130, guid: bcfca94a755fad440ba81c16566b17c5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5581680989241147396}
   m_SourcePrefab: {fileID: 100100000, guid: bcfca94a755fad440ba81c16566b17c5, type: 3}
+--- !u!1 &376345299564228953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1923812557875687130, guid: bcfca94a755fad440ba81c16566b17c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2273136224643604355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5581680989241147396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376345299564228953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0.1
+  m_Damping: 0.1
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!4 &1612456992796796636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 714757656443304287, guid: bcfca94a755fad440ba81c16566b17c5,

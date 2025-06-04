@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxPitch;
     [SerializeField] private float mouseSensitivity;
 
-    private Rigidbody rigid;
+    public Rigidbody rigid;
     private PlayerStatus status;
 
 

@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   power: 5
-  MaxHp: 100
+  MaxHp: 1000
   OnChangeHp:
     m_PersistentCalls:
       m_Calls: []
@@ -114,9 +114,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackRange: 30
+  attackRange: 80
   animator: {fileID: 2149791768863006702}
-  targetAttackRange: 5
+  targetAttackRange: 6
   hpBar: {fileID: 2119813551835972232}
   _item:
   - {fileID: 11400000, guid: 2f797c08f9d039747a677ee60c76c178, type: 2}
